@@ -35,7 +35,9 @@ public class PlayerManager : MonoBehaviour
         stateMachine.AddTransition(new Transition(
             idleState,
             jumpingState,
-            () => playerInput.IsJumpBufferd() && playerInput.CanBufferJump()
+            () =>
+                playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
+                playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime)
         ));
         
         stateMachine.AddTransition(new Transition(
@@ -60,7 +62,10 @@ public class PlayerManager : MonoBehaviour
         stateMachine.AddTransition(new Transition(
             inAirState,
             jumpingState,
-            () => playerInput.IsJumpBufferd() && playerInput.CanBufferJump() && !playerInput.IsJumping
+            () => 
+                playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
+                playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime) && 
+                !playerInput.IsJumping
         ));
         
         stateMachine.AddTransition(new Transition(
@@ -105,7 +110,9 @@ public class PlayerManager : MonoBehaviour
         stateMachine.AddTransition(new Transition(
             runningState,
             jumpingState,
-            () => playerInput.IsJumpBufferd() && playerInput.CanBufferJump()
+            () => 
+                playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
+                playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime)
         ));
         
         // walking transition
@@ -130,9 +137,10 @@ public class PlayerManager : MonoBehaviour
         stateMachine.AddTransition(new Transition(
             walkingState,
             jumpingState,
-            () => playerInput.IsJumpBufferd() && playerInput.CanBufferJump()
+            () => 
+                playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
+                playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime)
         ));
-        
         
         stateMachine.SwitchState(idleState);
     }
