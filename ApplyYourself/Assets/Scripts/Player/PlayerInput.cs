@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private PlayerValues _values;
     [SerializeField] private GroundCheck _groundCheck;
     public Rigidbody RB {get; private set;}
     public Vector2 MoveInput {get; private set;}
@@ -52,13 +51,13 @@ public class PlayerInput : MonoBehaviour
         IsHoldingRun = context.performed;
     }
     
-    public bool CanBufferJump()
+    public bool CanCyoteJump(float leaveGroundBuffer)
     {
-        return Time.time - _groundCheck.LastOnGroundTime <= _values.LeaveGroundBufferTime;
+        return Time.time - _groundCheck.LastOnGroundTime <= leaveGroundBuffer;
     }
 
-    public bool IsJumpBufferd()
+    public bool IsJumpBufferd(float bufferTime)
     {
-        return Time.time - lastPressedJumpTime <= _values.JumpInputBufferTime && Time.time > _values.JumpInputBufferTime;
+        return Time.time - lastPressedJumpTime <= bufferTime && Time.time > bufferTime;
     }
 }

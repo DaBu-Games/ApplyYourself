@@ -1,0 +1,110 @@
+@startuml
+
+'========================
+' State Machine Core
+'========================
+class StateMachine {
+    - IState currentState
+    - List<Transition> transitions
+    - List<Transition> currentTransitions
+    + Update()
+    + FixedUpdate()
+    + ChangeState(IState newState)
+}
+
+interface IState {
+    + OnEnterState()
+    + OnExitState()
+    + OnUpdate()
+    + OnFixedUpdate()
+}
+
+'========================
+' States
+'========================
+class IdleState
+class WalkingState
+class RunningState
+class JumpingState
+class InAirState
+
+IState <|.. IdleState
+IState <|.. WalkingState
+IState <|.. RunningState
+IState <|.. JumpingState
+IState <|.. InAirState
+
+'========================
+' Transitions
+'========================
+class Transition {
+    + IState from
+    + IState to
+    - Func<bool> condition
+    + CheckCondition() : bool
+}
+
+Transition --> IState
+
+'========================
+' Input & Environment
+'========================
+class UnityInputSystem
+
+class GroundCheck {
+    - LayerMask groundLayers
+    - float radius
+    + CheckForGround() : bool
+}
+
+class PlayerInput {
+    - GroundCheck groundCheck
+    - MossTrail mossTrail
+    + Vector2 moveInput { get }
+    + bool isHoldingJump { get }
+
+    + OnMove(context)
+    + OnJump(context)
+}
+
+UnityInputSystem --> PlayerInput
+PlayerInput o-- GroundCheck
+PlayerInput o-- MossTrail
+'========================
+' Player Data
+'========================
+class PlayerValues {
+    <<ScriptableObject>>
+}
+
+'========================
+' Player Manager
+'========================
+class PlayerManager {
+    - PlayerInput playerInput
+    - PlayerValues playerValues
+    - StateMachine stateMachine
+}
+
+PlayerManager o-- PlayerInput
+PlayerManager o-- PlayerValues
+PlayerManager o-- StateMachine
+
+PlayerManager ..> IState : initializes states
+
+'========================
+' Moss Trail System
+'========================
+class MossTrail {
+    - LineRenderer lineRenderer
+    - List<Vector2> mossPoints
+    - float mossWidth
+    - int ignoreRecentPoints
+
+    + AddPoint(Vector2)
+    + IsOnMoss(Vector2) : bool
+    - DistanceToSegment()
+}
+
+
+@enduml
