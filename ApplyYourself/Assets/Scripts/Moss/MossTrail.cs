@@ -7,7 +7,6 @@ public class MossTrail : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private float mossWidth = 2f;
-    [SerializeField] private float mossHeight = 0.2f;
     [SerializeField] private float minDistance = 0.5f;
     
     private readonly List<Vector3> mossPoints = new List<Vector3>();
@@ -63,10 +62,9 @@ public class MossTrail : MonoBehaviour
             forward = forward.normalized;
 
             Vector3 side = Vector3.Cross(Vector3.down, forward).normalized;
-
-            float heightOffset = UnityEngine.Random.Range(0f, mossHeight);
-            verts[i * 2]     = mossPoints[i] + side * (mossWidth * 0.5f) + Vector3.up * heightOffset;
-            verts[i * 2 + 1] = mossPoints[i] - side * (mossWidth * 0.5f) + Vector3.up * heightOffset;
+            
+            verts[i * 2]     = mossPoints[i] + side * (mossWidth * 0.5f);
+            verts[i * 2 + 1] = mossPoints[i] - side * (mossWidth * 0.5f);
 
             float v = i / (float)mossPoints.Count;
             uvs[i * 2]     = new Vector2(0, v);
