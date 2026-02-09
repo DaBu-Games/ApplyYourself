@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MossNormale:
-        m_Texture: {fileID: 2800000, guid: ed65f44110c10a84abfaabea9d3cab2b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0ed30fac3bd6bcb4b871f6c8d1833808, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MossTexture:
