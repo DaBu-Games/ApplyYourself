@@ -68,7 +68,9 @@ public class MossSurface : MonoBehaviour
                 float dist = Mathf.Sqrt(x * x + y * y) / radius;
                 if (dist > 1f) continue;
 
-                float value = Mathf.Clamp01(1f - dist) * strength;
+                // for if you want to use soft edges
+                // float value = Mathf.Clamp01(1f - dist) * strength;
+                float value = 1;
 
                 int index = py * textureSize + px;
                 float old = pixels[index].r;
@@ -116,7 +118,7 @@ public class MossSurface : MonoBehaviour
 
         int startIndex = startY * textureSize + startX;
         
-        if (pixels[startIndex].r > 0.1f)
+        if (pixels[startIndex].r > 0.9f)
             return false;
 
         // Reset visited
@@ -155,7 +157,7 @@ public class MossSurface : MonoBehaviour
         if (visited[index])
             return;
 
-        if (pixels[index].r > 0.1f)
+        if (pixels[index].r > 0.9f)
             return;
 
         visited[index] = true;
