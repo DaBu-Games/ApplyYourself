@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MossPainter : MonoBehaviour
 {
-    [SerializeField] private Material brushMaterial;
     [SerializeField] private float paintDistance = 0.3f;
     [SerializeField] private float rayCastDistance = 1.5f;
     [SerializeField] private float brushRadius = 0.05f;

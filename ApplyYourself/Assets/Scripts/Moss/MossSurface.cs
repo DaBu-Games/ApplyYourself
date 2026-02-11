@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
@@ -8,9 +9,11 @@ public class MossSurface : MonoBehaviour
 
     private Texture2D mossMask;
     private Color[] pixels;
-
-    public Texture2D MossMask => mossMask;
-
+    
+    private bool[] visited;
+    private Stack<int> stack;
+    private List<GrowableObject> growables = new List<GrowableObject>();
+    
     private static readonly int MossMaskID = Shader.PropertyToID("_MossMask");
 
     private void Awake()
@@ -26,8 +29,9 @@ public class MossSurface : MonoBehaviour
         mossMask.filterMode = FilterMode.Bilinear;
 
         pixels = new Color[textureSize * textureSize];
-
-        // start black
+        visited = new bool[textureSize * textureSize];
+        stack = new Stack<int>();
+        
         for (int i = 0; i < pixels.Length; i++)
             pixels[i] = Color.black;
 
@@ -36,12 +40,20 @@ public class MossSurface : MonoBehaviour
 
         GetComponent<Renderer>().material.SetTexture(MossMaskID, mossMask);
     }
+    
+    public void RegisterGrowable(GrowableObject obj)
+    {
+        if (!growables.Contains(obj))
+            growables.Add(obj);
+    }
 
     public void PaintCircle(Vector2 uv, float radius01, float strength)
     {
         int cx = (int)(uv.x * textureSize);
         int cy = (int)(uv.y * textureSize);
         int radius = Mathf.CeilToInt(radius01 * textureSize);
+        
+        bool paintedSomething = false;
 
         for (int y = -radius; y <= radius; y++)
         {
@@ -56,14 +68,104 @@ public class MossSurface : MonoBehaviour
                 float dist = Mathf.Sqrt(x * x + y * y) / radius;
                 if (dist > 1f) continue;
 
-                float value = Mathf.Clamp01(1f - dist) * strength;
+                // for if you want to use soft edges
+                // float value = Mathf.Clamp01(1f - dist) * strength;
+                float value = 1;
 
                 int index = py * textureSize + px;
-                pixels[index].r = Mathf.Max(pixels[index].r, value);
+                float old = pixels[index].r;
+                float newValue = Mathf.Max(old, value);
+
+                if (newValue > old)
+                {
+                    pixels[index].r = newValue;
+                    paintedSomething = true;
+                }
             }
         }
 
-        mossMask.SetPixels(pixels);
-        mossMask.Apply();
+        if (paintedSomething)
+        {
+            mossMask.SetPixels(pixels);
+            mossMask.Apply();
+            CheckGrowables();
+        }
+    }
+    
+    private void CheckGrowables()
+    {
+        for (int i = growables.Count - 1; i >= 0; i--)
+        {
+            GrowableObject obj = growables[i];
+
+            Vector2 uv = obj.UV;
+
+            if (IsAreaEnclosed(uv))
+            {
+                obj.Grow();
+                growables.RemoveAt(i);
+            }
+        }
+    }
+    
+    private bool IsAreaEnclosed(Vector2 uv)
+    {
+        int startX = (int)(uv.x * textureSize);
+        int startY = (int)(uv.y * textureSize);
+
+        if (!IsInside(startX, startY))
+            return false;
+
+        int startIndex = startY * textureSize + startX;
+        
+        if (pixels[startIndex].r > 0.9f)
+            return false;
+
+        // Reset visited
+        System.Array.Clear(visited, 0, visited.Length);
+        stack.Clear();
+
+        stack.Push(startIndex);
+        visited[startIndex] = true;
+
+        while (stack.Count > 0)
+        {
+            int index = stack.Pop();
+            int x = index % textureSize;
+            int y = index / textureSize;
+
+            // If flood reaches edge → not enclosed
+            if (x == 0 || y == 0 || x == textureSize - 1 || y == textureSize - 1)
+                return false;
+
+            TryVisit(x + 1, y);
+            TryVisit(x - 1, y);
+            TryVisit(x, y + 1);
+            TryVisit(x, y - 1);
+        }
+        
+        return true;
+    }
+
+    private void TryVisit(int x, int y)
+    {
+        if (!IsInside(x, y))
+            return;
+
+        int index = y * textureSize + x;
+
+        if (visited[index])
+            return;
+
+        if (pixels[index].r > 0.9f)
+            return;
+
+        visited[index] = true;
+        stack.Push(index);
+    }
+
+    private bool IsInside(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < textureSize && y < textureSize;
     }
 }
