@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d5be67b2bdf3048b2f095228590303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MossPainter
-  paintDistance: 0.05
+  paintDistance: 0.4
   rayCastDistance: 1.5
   brushRadius: 0.01
   brushStrength: 1
