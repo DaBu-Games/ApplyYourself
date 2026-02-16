@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3802575454743638839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7303845
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.68303627
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 86.163
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257024078375612403, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494506313798296322, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: m_Name
+      value: Biggrass (1) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734188603048923744, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 70123c1978c2314409bb3f3e349c2d45, type: 2}
+    - target: {fileID: 8873253180288306220, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 70123c1978c2314409bb3f3e349c2d45, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c575c3d2f80a38a419114910feb29de4, type: 3}
