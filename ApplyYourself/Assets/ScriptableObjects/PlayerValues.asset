@@ -20,5 +20,7 @@ MonoBehaviour:
   JumpInputBufferTime: 0.15
   LeaveGroundBufferTime: 0.25
   JumpForce: 10
-  Gravity: -9.81
-  FallingGravity: -20
+  MaxClimbSpeed: 6
+  ClimbAcceleration: 1.5
+  Gravity: -20
+  FallingGravity: -40

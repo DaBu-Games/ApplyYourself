@@ -14,11 +14,6 @@ public class PlayerInput : MonoBehaviour
     
     private float lastPressedJumpTime;
 
-    public PlayerInput(bool isJumping)
-    {
-        IsJumping = isJumping;
-    }
-
     public bool IsHoldingRun {get; private set;}
     
     public bool IsGrounded => _groundCheck.IsGrounded;
