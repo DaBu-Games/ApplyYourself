@@ -10,19 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_LocalScale.y
-      value: 139.78384
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.661084
+      value: -7.2603817
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.40450707
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.61
+      value: -7.792654
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1c06a6658f556c64b9208b5bc08aaa16, type: 2}
     - target: {fileID: 919132149155446097, guid: 2fb06db3ad32324498e8b8442044e442, type: 3}
       propertyPath: m_Name
-      value: Heg (1)
+      value: Hedge (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
