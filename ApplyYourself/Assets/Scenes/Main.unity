@@ -345,6 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   playerInput: {fileID: 43674167}
   playerValues: {fileID: 11400000, guid: 4b0e20f9039cb134bace2caf00321e05, type: 2}
+  wallCheck: {fileID: 1664641547}
 --- !u!114 &43674169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +457,6 @@ MonoBehaviour:
   paintDistance: 0.4
   rayCastDistance: 1.5
   brushRadius: 0.01
-  brushStrength: 1
 --- !u!1 &108218565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MossSurface
   textureSize: 512
+  fillIn: 1
+  mossSettings: {fileID: 11400000, guid: 3490571da44cc40469388d94bc2ae7a8, type: 2}
 --- !u!64 &596818978
 MeshCollider:
   m_ObjectHideFlags: 0

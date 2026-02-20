@@ -27,6 +27,6 @@ public class GrowableObject : MonoBehaviour
         
         hasGrown = true;
         transform.localScale *= 1.5f;
-        Debug.Log(name + " grew!");
+        //Debug.Log(name + " grew!");
     }
 }

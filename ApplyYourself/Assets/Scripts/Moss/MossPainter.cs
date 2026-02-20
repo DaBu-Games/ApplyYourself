@@ -6,7 +6,6 @@ public class MossPainter : MonoBehaviour
     [SerializeField] private float paintDistance = 0.3f;
     [SerializeField] private float rayCastDistance = 1.5f;
     [SerializeField] private float brushRadius = 0.05f;
-    [SerializeField] private float brushStrength = 1f;
 
     private Vector3 lastPaintPos;
     private MossSurface currentSurface;
@@ -20,7 +19,7 @@ public class MossPainter : MonoBehaviour
         if (!Physics.Raycast(
                 transform.position,
                 -transform.up,
-                out var hit,
+                out RaycastHit hit,
                 rayCastDistance))
             return;
 
@@ -41,8 +40,7 @@ public class MossPainter : MonoBehaviour
 
         currentSurface.PaintCircle(
             hit.textureCoord,
-            brushRadius,
-            brushStrength
+            brushRadius
         );
 
         lastPaintPos = transform.position;

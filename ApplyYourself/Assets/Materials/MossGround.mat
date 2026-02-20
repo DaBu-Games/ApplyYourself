@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MossMaterial
+  m_Name: MossGround
   m_Shader: {fileID: -6465566751694194690, guid: 3161777511f22cb409b9a4d7520daabb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MossColor:
-        m_Texture: {fileID: 2800000, guid: 0b6c444d13ed153479011a14e45cfa24, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2d87d0ae6b9d01b48a950de159f63e1f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MossMask:
