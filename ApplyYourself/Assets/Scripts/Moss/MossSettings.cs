@@ -8,7 +8,10 @@ public class MossSettings : ScriptableObject
     [Header("Spawn Settings")] 
     public float minScale = 0.8f;
     public float maxScale = 1.2f;
-    public float spawnChance = 0.3f;
+    public float mossPerSquareMeter = 50f;
+    
+    [Header("Optimization Settings")]
+    public float chunkSize = 1f;
 }
 
 

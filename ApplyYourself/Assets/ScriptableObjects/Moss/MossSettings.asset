@@ -29,4 +29,5 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 21cc7fd74eee0df4f9716518d467f22a, type: 2}
   minScale: 40
   maxScale: 60
-  spawnChance: 0.3
+  mossPerSquareMeter: 20
+  chunkSize: 30

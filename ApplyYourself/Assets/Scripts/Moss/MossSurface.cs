@@ -21,10 +21,9 @@ public class MossSurface : MonoBehaviour
     private List<GrowableObject> growables = new List<GrowableObject>();
     
     private Renderer mossRenderer;
-    
-    private List<Matrix4x4>[] matricesPerType;
-    private Matrix4x4[] tempMatrices = new Matrix4x4[1023];
-    
+    private Dictionary<Vector2Int, MossChunk>[] mossChunks;
+    private float worldSize;
+    private float mossSpawnChance;
     
     private static readonly int MossMaskID = Shader.PropertyToID("_MossMask");
 
@@ -55,14 +54,22 @@ public class MossSurface : MonoBehaviour
         
         mossRenderer = GetComponent<Renderer>();
         mossRenderer.material.SetTexture(MossMaskID, mossMask);
+        
+        Bounds bounds = mossRenderer.bounds;
+        worldSize = (bounds.size.x + bounds.size.z) * 0.5f;
+        
+        float pixelWorldSize = worldSize / textureSize;
+        float pixelWorldArea = pixelWorldSize * pixelWorldSize;
+
+        mossSpawnChance = mossSettings.mossPerSquareMeter * pixelWorldArea;
     }
     
     private void InitializeInstancing() 
     {
-        matricesPerType = new List<Matrix4x4>[mossSettings.mossTypes.Length];
-
-        for (int i = 0; i < matricesPerType.Length; i++)
-            matricesPerType[i] = new List<Matrix4x4>();
+        mossChunks = new Dictionary<Vector2Int, MossChunk>[mossSettings.mossTypes.Length];
+        
+        for (int i = 0; i < mossSettings.mossTypes.Length; i++)
+            mossChunks[i] = new Dictionary<Vector2Int, MossChunk>();
     }
 
     public void RegisterGrowable(GrowableObject obj)
@@ -71,10 +78,13 @@ public class MossSurface : MonoBehaviour
             growables.Add(obj);
     }
 
-    public void PaintCircle(Vector2 uv, float radius01)
+    public void PaintCircle(Vector2 uv, float radiusWorld)
     {
         int cx = (int)(uv.x * textureSize);
         int cy = (int)(uv.y * textureSize);
+        
+        float radius01 = radiusWorld / worldSize;
+
         int radius = Mathf.CeilToInt(radius01 * textureSize);
         
         bool paintedSomething = false;
@@ -200,15 +210,27 @@ public class MossSurface : MonoBehaviour
     {
         foreach (int index in changedPixels)
         {
-            if (mossSpawned[index] || Random.value > mossSettings.spawnChance)
+            if (mossSpawned[index])
                 continue;
             
-            Vector2 uv = IndexToUV(index);
+            float expected = mossSpawnChance;
+            int spawnCount = Mathf.FloorToInt(expected);
+
+            if (Random.value < (expected - spawnCount))
+                spawnCount++;
             
-            if (TryGetWorldFromUV(uv, out Vector3 worldPos, out Vector3 normal))
+            for (int i = 0; i < spawnCount; i++)
             {
-                SpawnMossAt(index, worldPos, normal);
+                Vector2 uv = IndexToUV(index);
+
+                if (TryGetWorldFromUV(uv, out Vector3 worldPos, out Vector3 normal))
+                {
+                    SpawnMossAt(index, worldPos, normal);
+                }
             }
+            
+            if (spawnCount > 0)
+                mossSpawned[index] = true;
         }
         
         changedPixels.Clear();
@@ -253,34 +275,44 @@ public class MossSurface : MonoBehaviour
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, normal);
         rot *= Quaternion.Euler(0, Random.Range(0, 360f), 0);
         float scale = Random.Range(mossSettings.minScale, mossSettings.maxScale);
+        
+        Vector2Int chunkKey = new Vector2Int(
+            Mathf.FloorToInt(worldPos.x / mossSettings.chunkSize),
+            Mathf.FloorToInt(worldPos.z / mossSettings.chunkSize)
+        );
+        
+        var chunks = mossChunks[mossIndex];
+        
+        if (!chunks.TryGetValue(chunkKey, out MossChunk chunk))
+        {
+            chunk = new MossChunk( 
+                transform, 
+                mossSettings.mossTypes[mossIndex].material,
+                new Vector3(chunkKey.x * mossSettings.chunkSize, 0, chunkKey.y * mossSettings.chunkSize)
+            );
+            
+            chunks.Add(chunkKey, chunk);
+        }
+        
+        Vector3 localPos = worldPos - chunk.WorldPosition;
 
-        Matrix4x4 matrix = Matrix4x4.TRS(worldPos, rot, Vector3.one * scale);
-        matricesPerType[mossIndex].Add(matrix);
+        Matrix4x4 localMatrix = Matrix4x4.TRS(
+            localPos,
+            rot,
+            Vector3.one * scale
+        );
+
+        chunk.AddMatrix(localMatrix);
         mossSpawned[index] = true;
     }
     
     private void LateUpdate()
     {
-        if (matricesPerType == null) return;
-
         for (int i = 0; i < mossSettings.mossTypes.Length; i++)
         {
-            var matrices = matricesPerType[i];
-            if (matrices.Count == 0) continue;
-
-            int start = 0;
-            while (start < matrices.Count)
+            foreach (var chunk in mossChunks[i].Values)
             {
-                int count = Mathf.Min(1023, matrices.Count - start);
-                
-                Graphics.DrawMeshInstanced(
-                    mossSettings.mossTypes[i].mesh,
-                    0,
-                    mossSettings.mossTypes[i].material,
-                    matrices.GetRange(start, count)
-                );
-                
-                start += count;
+                chunk.UpdateMesh(mossSettings.mossTypes[i].mesh);
             }
         }
     }

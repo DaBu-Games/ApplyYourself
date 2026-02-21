@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MossPainter
   paintDistance: 0.4
   rayCastDistance: 1.5
-  brushRadius: 0.01
+  brushRadiusWorld: 0.5
 --- !u!1 &108218565
 GameObject:
   m_ObjectHideFlags: 0
