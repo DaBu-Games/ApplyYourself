@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class MossChunk
 {
-    private List<Matrix4x4> matrices = new List<Matrix4x4>();
+    private Dictionary<int, List<Matrix4x4>> matricesPerType = new Dictionary<int, List<Matrix4x4>>();
     private Mesh combinedMesh;
     private GameObject chunkObject;
     private bool hasChanges = true;
@@ -11,10 +11,14 @@ public class MossChunk
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
     
+    private MossSettings mossSettings;
+    
     public Vector3 WorldPosition => chunkObject.transform.position;
     
-    public MossChunk(Transform parent, Material mossMaterial, Vector3 position)
+    public MossChunk(Transform parent, MossSettings settings, Vector3 position)
     {
+        mossSettings = settings;
+        
         chunkObject = new GameObject("MossChunk");
         chunkObject.transform.SetParent(parent);
         chunkObject.transform.position = position;
@@ -22,37 +26,75 @@ public class MossChunk
 
         meshFilter = chunkObject.AddComponent<MeshFilter>();
         meshRenderer = chunkObject.AddComponent<MeshRenderer>();
-        meshRenderer.material = mossMaterial;
-
+        
         combinedMesh = new Mesh();
-        meshFilter.mesh = combinedMesh;
+        combinedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        meshFilter.mesh = combinedMesh; 
     }
 
-    public void AddMatrix(Matrix4x4 matrix)
+    public void AddMatrix(int mossTypeIndex, Matrix4x4 matrix)
     {
-        matrices.Add(matrix);
+        if (!matricesPerType.TryGetValue(mossTypeIndex, out var list))
+        {
+            list = new List<Matrix4x4>();
+            matricesPerType[mossTypeIndex] = list;
+        }
+
+        list.Add(matrix);
         hasChanges = true;
     }
     
-    public void UpdateMesh(Mesh baseMesh)
+    public void UpdateMesh()
     {
-        if (!hasChanges || matrices.Count == 0) return;
+        if (!hasChanges ) return;
+        
+        combinedMesh.Clear();
+        
+        var combineList = new List<CombineInstance>();
+        var materials = new List<Material>();
 
-        CombineInstance[] combines = new CombineInstance[matrices.Count];
-        for (int i = 0; i < matrices.Count; i++)
+        foreach (var instance in matricesPerType)
         {
-            combines[i] = new CombineInstance
+            int mossTypeIndex = instance.Key;
+            var matrices = instance.Value;
+
+            if (matrices.Count == 0)
+                continue;
+
+            Mesh baseMesh = mossSettings.mossTypes[mossTypeIndex].mesh;
+            var subCombines = new CombineInstance[matrices.Count];
+
+            for (int i = 0; i < matrices.Count; i++)
             {
-                mesh = baseMesh,
-                transform = matrices[i]
-            };
+                subCombines[i] = new CombineInstance
+                {
+                    mesh = baseMesh,
+                    transform = matrices[i]
+                };
+            }
+
+            Mesh subMesh = new Mesh();
+            subMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            subMesh.CombineMeshes(subCombines, true, true, false);
+
+            combineList.Add(new CombineInstance
+            {
+                mesh = subMesh,
+                transform = Matrix4x4.identity
+            });
+
+            materials.Add(mossSettings.mossTypes[mossTypeIndex].material);
         }
 
-        combinedMesh.Clear();
-        combinedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-        combinedMesh.CombineMeshes(combines, true, true, false);
+        if (combineList.Count > 0)
+        {
+            combinedMesh.CombineMeshes(combineList.ToArray(), false, false, false);
+            meshRenderer.materials = materials.ToArray();
+        }
+
         combinedMesh.RecalculateBounds();
         combinedMesh.UploadMeshData(false);
+
         hasChanges = false;
     }
 }

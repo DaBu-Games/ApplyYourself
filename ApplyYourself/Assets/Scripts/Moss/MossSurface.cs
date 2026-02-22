@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,9 +22,10 @@ public class MossSurface : MonoBehaviour
     private List<GrowableObject> growables = new List<GrowableObject>();
     
     private Renderer mossRenderer;
-    private Dictionary<Vector2Int, MossChunk>[] mossChunks;
+    private Dictionary<Vector2Int, MossChunk> mossChunks;
     private float worldSize;
     private float mossSpawnChance;
+    [SerializeField] private float chunkSize;
     
     private static readonly int MossMaskID = Shader.PropertyToID("_MossMask");
 
@@ -62,14 +64,14 @@ public class MossSurface : MonoBehaviour
         float pixelWorldArea = pixelWorldSize * pixelWorldSize;
 
         mossSpawnChance = mossSettings.mossPerSquareMeter * pixelWorldArea;
+        
+        float chunkArea = mossSettings.targetMossPerChunk / mossSettings.mossPerSquareMeter;
+        chunkSize = math.clamp(Mathf.Sqrt(chunkArea), mossSettings.minChunkSize, mossSettings.maxChunkSize);
     }
     
     private void InitializeInstancing() 
     {
-        mossChunks = new Dictionary<Vector2Int, MossChunk>[mossSettings.mossTypes.Length];
-        
-        for (int i = 0; i < mossSettings.mossTypes.Length; i++)
-            mossChunks[i] = new Dictionary<Vector2Int, MossChunk>();
+        mossChunks = new Dictionary<Vector2Int, MossChunk>();
     }
 
     public void RegisterGrowable(GrowableObject obj)
@@ -274,24 +276,24 @@ public class MossSurface : MonoBehaviour
 
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, normal);
         rot *= Quaternion.Euler(0, Random.Range(0, 360f), 0);
+        
         float scale = Random.Range(mossSettings.minScale, mossSettings.maxScale);
         
         Vector2Int chunkKey = new Vector2Int(
-            Mathf.FloorToInt(worldPos.x / mossSettings.chunkSize),
-            Mathf.FloorToInt(worldPos.z / mossSettings.chunkSize)
+            Mathf.FloorToInt(worldPos.x / chunkSize),
+            Mathf.FloorToInt(worldPos.z / chunkSize)
         );
         
-        var chunks = mossChunks[mossIndex];
-        
-        if (!chunks.TryGetValue(chunkKey, out MossChunk chunk))
+        // if the chunk does not exist yet make it
+        if (!mossChunks.TryGetValue(chunkKey, out MossChunk chunk))
         {
             chunk = new MossChunk( 
                 transform, 
-                mossSettings.mossTypes[mossIndex].material,
-                new Vector3(chunkKey.x * mossSettings.chunkSize, 0, chunkKey.y * mossSettings.chunkSize)
+                mossSettings,
+                new Vector3(chunkKey.x * chunkSize, 0, chunkKey.y * chunkSize)
             );
             
-            chunks.Add(chunkKey, chunk);
+            mossChunks.Add(chunkKey, chunk);
         }
         
         Vector3 localPos = worldPos - chunk.WorldPosition;
@@ -302,18 +304,15 @@ public class MossSurface : MonoBehaviour
             Vector3.one * scale
         );
 
-        chunk.AddMatrix(localMatrix);
+        chunk.AddMatrix(mossIndex, localMatrix);
         mossSpawned[index] = true;
     }
     
     private void LateUpdate()
     {
-        for (int i = 0; i < mossSettings.mossTypes.Length; i++)
+        foreach (var chunk in mossChunks.Values)
         {
-            foreach (var chunk in mossChunks[i].Values)
-            {
-                chunk.UpdateMesh(mossSettings.mossTypes[i].mesh);
-            }
+            chunk.UpdateMesh();
         }
     }
 }
