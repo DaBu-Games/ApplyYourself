@@ -30,4 +30,6 @@ MonoBehaviour:
   minScale: 40
   maxScale: 60
   mossPerSquareMeter: 20
-  chunkSize: 30
+  targetMossPerChunk: 1000
+  maxChunkSize: 12
+  minChunkSize: 2

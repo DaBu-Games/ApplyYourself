@@ -1069,6 +1069,7 @@ MonoBehaviour:
   textureSize: 512
   fillIn: 1
   mossSettings: {fileID: 11400000, guid: 3490571da44cc40469388d94bc2ae7a8, type: 2}
+  chunkSize: 0
 --- !u!64 &596818978
 MeshCollider:
   m_ObjectHideFlags: 0

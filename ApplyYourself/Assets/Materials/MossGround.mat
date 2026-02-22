@@ -148,6 +148,8 @@ Material:
     - _BaseColor: {r: 0.33271575, g: 1, b: 0, a: 1}
     - _Color: {r: 0.33271572, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MossColor: {r: 0.50980395, g: 0.5647059, b: 0.34901962, a: 1}
+    - _MossColor_1: {r: 1, g: 0.016024021, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

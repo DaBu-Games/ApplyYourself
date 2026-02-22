@@ -25,7 +25,7 @@ public class MossSurface : MonoBehaviour
     private Dictionary<Vector2Int, MossChunk> mossChunks;
     private float worldSize;
     private float mossSpawnChance;
-    [SerializeField] private float chunkSize;
+    private float chunkSize;
     
     private static readonly int MossMaskID = Shader.PropertyToID("_MossMask");
 
@@ -284,7 +284,6 @@ public class MossSurface : MonoBehaviour
             Mathf.FloorToInt(worldPos.z / chunkSize)
         );
         
-        // if the chunk does not exist yet make it
         if (!mossChunks.TryGetValue(chunkKey, out MossChunk chunk))
         {
             chunk = new MossChunk( 
