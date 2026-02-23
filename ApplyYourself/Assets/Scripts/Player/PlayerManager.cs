@@ -6,9 +6,11 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private PlayerValues playerValues;
+    [SerializeField] private WallCheck wallCheck;
     
     private StateMachine stateMachine;
     
+    private ClimbingState climbingState;
     private IdleState idleState;
     private InAirState inAirState;
     private JumpingState jumpingState;
@@ -18,12 +20,20 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         stateMachine = new StateMachine();
-
+        
+        climbingState = new ClimbingState(playerInput, playerValues, wallCheck);
         idleState = new IdleState(playerInput, playerValues);
         inAirState = new InAirState(playerInput, playerValues);
         jumpingState = new JumpingState(playerInput, playerValues);
         runningState = new RunningState(playerInput, playerValues);
         walkingState = new WalkingState(playerInput, playerValues);
+        
+        // climbing transition
+        stateMachine.AddTransition(new Transition(
+                climbingState,
+                inAirState,
+                () => !playerInput.IsHoldingJump || !wallCheck.IsTouchingWall()
+        ));
         
         // idle transitions
         stateMachine.AddTransition(new Transition(
@@ -61,12 +71,11 @@ public class PlayerManager : MonoBehaviour
         
         stateMachine.AddTransition(new Transition(
             inAirState,
-            jumpingState,
-            () => 
-                playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
-                playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime) && 
-                !playerInput.IsJumping
+            climbingState,
+            () => playerInput.IsHoldingJump && wallCheck.IsTouchingWall()
         ));
+        
+        
         
         stateMachine.AddTransition(new Transition(
             inAirState,
