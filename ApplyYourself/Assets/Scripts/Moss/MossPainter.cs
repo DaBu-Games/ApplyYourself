@@ -37,6 +37,7 @@ public class MossPainter : MonoBehaviour
         if (!currentSurface)
             return;
         
+        Debug.Log(hit.textureCoord);
 
         currentSurface.PaintCircle(
             hit.textureCoord,

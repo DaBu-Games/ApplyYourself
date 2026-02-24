@@ -210,6 +210,7 @@ public class MossSurface : MonoBehaviour
     
     private void SpawnFromChangedPixels()
     {
+        Debug.Log("changedPixels: " + changedPixels.Count);
         foreach (int index in changedPixels)
         {
             if (mossSpawned[index])

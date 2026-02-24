@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 6155a7c71afe0ef4f99b8eb592627e12, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f8170f5941eea64fa2dbfbe04822da7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -107,6 +107,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Alpha: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -146,6 +147,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.33271575, g: 1, b: 0, a: 1}
+    - _BaseColor_1: {r: 0.50980395, g: 0.5647059, b: 0.34901962, a: 0}
     - _Color: {r: 0.33271572, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MossColor: {r: 0.50980395, g: 0.5647059, b: 0.34901962, a: 1}
