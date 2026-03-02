@@ -117,6 +117,7 @@ public class MossSurface : MonoBehaviour
 
         if (paintedSomething)
         {
+            Debug.Log("painted something");
             CheckGrowables();
             SpawnFromChangedPixels();
             
