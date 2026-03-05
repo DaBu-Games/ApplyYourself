@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MossPainter : MonoBehaviour
 {
+    [SerializeField] private GroundCheck groundCheck;
     [SerializeField] private float paintDistance = 0.3f;
     [SerializeField] private float rayCastDistance = 1.5f;
     [SerializeField] private float brushRadiusWorld = 0.2f;
@@ -13,7 +14,7 @@ public class MossPainter : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance)
+        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance || !groundCheck.IsGrounded!)
             return;
 
         if (!Physics.Raycast(
@@ -44,6 +45,12 @@ public class MossPainter : MonoBehaviour
         );
 
         lastPaintPos = transform.position;
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, -transform.up * rayCastDistance);
     }
 
 }
