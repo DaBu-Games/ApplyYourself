@@ -12,7 +12,11 @@ public class ClimbingState : IState
         _values = values;
         _wallCheck = wallCheck;
     }
-    public void OnEnterState() { }
+
+    public void OnEnterState()
+    {
+        _player.RB.linearVelocity = Vector3.zero;
+    }
 
     public void OnExitState() { }
 
@@ -25,26 +29,23 @@ public class ClimbingState : IState
 
     private void Climb()
     {
-        Vector3 gravityDir = _wallCheck.GetWallDirection.normalized;
-            
-        Vector3 input = _player.transform.right * _player.MoveInput.x + _player.transform.forward * _player.MoveInput.y;
+        Vector3 wallNormal = _wallCheck.GetWallDirection;
         
-        Vector3 surfaceMove = Vector3.ProjectOnPlane(input, gravityDir).normalized;
-
-        Vector3 targetVelocity = surfaceMove * _values.MaxClimbSpeed;
-
-        Vector3 current = _player.RB.linearVelocity;
+        Vector3 wallRight = Vector3.Cross(wallNormal, Vector3.up).normalized;
         
-        Vector3 surfaceVelocity = Vector3.ProjectOnPlane(current, gravityDir);
-
-        Vector3 newSurfaceVelocity = Vector3.MoveTowards(
-            surfaceVelocity,
+        Vector3 input = wallRight * _player.MoveInput.x + Vector3.up * _player.MoveInput.y;
+        
+        if (input.magnitude > 1f)
+            input.Normalize();
+        
+        Vector3 targetVelocity = input * _values.MaxClimbSpeed;
+        _player.RB.linearVelocity = Vector3.MoveTowards(
+            _player.RB.linearVelocity,
             targetVelocity,
             _values.ClimbAcceleration * Time.fixedDeltaTime
         );
         
-        Vector3 gravityVelocity = Vector3.Project(current, gravityDir);
-
-        _player.RB.linearVelocity = newSurfaceVelocity + gravityVelocity;
+        Vector3 pullForce = wallNormal * -_values.ClimbStickForce;
+        _player.RB.AddForce(pullForce, ForceMode.Force);
     }
 }

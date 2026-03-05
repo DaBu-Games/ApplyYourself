@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         stateMachine.AddTransition(new Transition(
                 climbingState,
                 inAirState,
-                () => !playerInput.IsHoldingJump || !wallCheck.IsTouchingWall()
+                () => !playerInput.IsHoldingJump
         ));
         
         // idle transitions
@@ -74,8 +74,6 @@ public class PlayerManager : MonoBehaviour
             climbingState,
             () => playerInput.IsHoldingJump && wallCheck.IsTouchingWall()
         ));
-        
-        
         
         stateMachine.AddTransition(new Transition(
             inAirState,

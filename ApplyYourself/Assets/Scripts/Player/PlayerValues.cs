@@ -25,6 +25,7 @@ public class PlayerValues : ScriptableObject
     [Header("Climb values")]
     public float MaxClimbSpeed = 6f;
     public float ClimbAcceleration = 1.5f;
+    public float ClimbStickForce = 1.5f;
     
     [Header("physics values")]
     public float Gravity = -9.81f;
