@@ -7,6 +7,7 @@ public class MossPainter : MonoBehaviour
     [SerializeField] private float paintDistance = 0.3f;
     [SerializeField] private float rayCastDistance = 1.5f;
     [SerializeField] private float brushRadiusWorld = 0.2f;
+    [SerializeField] private bool showGizmo;
 
     private Vector3 lastPaintPos;
     private MossSurface currentSurface;
@@ -49,6 +50,9 @@ public class MossPainter : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        if(!showGizmo)
+            return;
+        
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position, -transform.up * rayCastDistance);
     }
