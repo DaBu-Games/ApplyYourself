@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7212091380881335551}
   - component: {fileID: 193267550217231225}
   - component: {fileID: 5402199113300251524}
+  - component: {fileID: 5276271677273600738}
   m_Layer: 0
   m_Name: ThirdPersonCamera
   m_TagString: Untagged
@@ -192,7 +193,7 @@ MonoBehaviour:
       Owner: {fileID: 7212091380881335551}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: 3550494030411134142, guid: c931e17fd7ea67c4b9ad08e385c955ed, type: 3}
         Gain: 1
         CancelDeltaTime: 0
       InputValue: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
       Owner: {fileID: 7212091380881335551}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: 3550494030411134142, guid: c931e17fd7ea67c4b9ad08e385c955ed, type: 3}
         Gain: -1
         CancelDeltaTime: 0
       InputValue: 0
@@ -214,7 +215,7 @@ MonoBehaviour:
       Owner: {fileID: 7212091380881335551}
       Enabled: 1
       Input:
-        InputAction: {fileID: 5082991133974614888, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: -3914893496577766423, guid: c931e17fd7ea67c4b9ad08e385c955ed, type: 3}
         Gain: -1
         CancelDeltaTime: 0
       InputValue: 0
@@ -223,6 +224,24 @@ MonoBehaviour:
         DecelTime: 0
   PlayerIndex: -1
   AutoEnableInputs: 1
+--- !u!114 &5276271677273600738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316270776170760782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d785b84b473a40bb89527e83d3900c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  cam: {fileID: 529460790225376215}
+  orbital: {fileID: 7212091380881335551}
+  zoomSpeed: 2
+  zoomLerpSpeed: 10
+  minDistance: 2
+  maxDistance: 13
 --- !u!1 &4942500536552899829
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +428,94 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 28e7445f-e863-4c9f-b7cb-8e4978c1b955
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 34202774-d5f6-460d-8a12-23e676884807
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: db3d7db0-8475-4ec0-a682-8b77ce34dbf3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: e4a66e16-5d82-4997-8843-11dee5ca177f
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: 'GamePlay/Shoot[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: 'Player/Sprint[/DualShock4GamepadHID/leftStick/down,/Keyboard/shift]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: 'Player/Zoom[/Mouse/scroll]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: 'Player/Look[/Mouse/delta,/Touchscreen/delta]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7694921030611409157}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5276271677273600738}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnZoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337279714470611803, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4917515849921905873, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
       propertyPath: showGizmo
       value: 0
@@ -513,7 +620,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Body
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2389838122813233740, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
     m_RemovedGameObjects:
     - {fileID: 9203331766882345005, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
     m_AddedGameObjects: []
@@ -524,3 +632,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5735110715783219200, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
   m_PrefabInstance: {fileID: 2789157109833885631}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7694921030611409157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5511502649165479610, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+  m_PrefabInstance: {fileID: 2789157109833885631}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318443546e3db064c9cca039450d5d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController

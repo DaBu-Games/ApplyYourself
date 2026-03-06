@@ -1,33 +1,54 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform cameraTransform;
+    [Header("Cinemachine reference")]
+    [SerializeField] private CinemachineCamera cam;
+    [SerializeField] private CinemachineOrbitalFollow orbital;
     
     [Header("Look")]
-    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float zoomSpeed = 2f;
+    [SerializeField] private float zoomLerpSpeed = 10f;
+    [SerializeField] private float minDistance = 2f;
+    [SerializeField] private float maxDistance = 13f;
     
-    private float _xRotation;
+    private Vector2 scrollDate;
+    
+    private float targetZoom;
+    private float currentZoom;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        targetZoom = orbital.Radius;
+        currentZoom = targetZoom;
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void OnZoom(InputAction.CallbackContext context)
     {
-        Vector2 lookInput = context.ReadValue<Vector2>();
+        scrollDate = context.ReadValue<Vector2>();
+    }
+
+    private void Update()
+    {
+        SetTargetZoom();
         
-        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
+        currentZoom = Mathf.Lerp(currentZoom, targetZoom, zoomLerpSpeed * Time.deltaTime);
+        orbital.Radius = currentZoom;
+    }
 
-        _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
-        cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+    private void SetTargetZoom()
+    {
+        if(scrollDate.y == 0f || !orbital)
+            return;
+        
+        targetZoom = Mathf.Clamp(orbital.Radius - scrollDate.y * zoomSpeed, minDistance, maxDistance);
+        scrollDate = Vector2.zero;
     }
 }

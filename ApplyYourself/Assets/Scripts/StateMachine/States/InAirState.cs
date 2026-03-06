@@ -4,11 +4,13 @@ public class InAirState : IState
 {
     private PlayerInput _player;
     private PlayerValues _values;
+    private Transform _cameraTransform;
     
-    public InAirState(PlayerInput player, PlayerValues values)
+    public InAirState(PlayerInput player, PlayerValues values, Transform cameraTransform)
     {
         _player = player;
         _values = values;
+        _cameraTransform = cameraTransform;
     }
 
     public void OnEnterState() { }
@@ -24,6 +26,7 @@ public class InAirState : IState
     {
         ApplyGravity();
         AirControl();
+        RotateTowardsMovement();
     }
 
     private void ApplyGravity()
@@ -37,7 +40,16 @@ public class InAirState : IState
 
     private void AirControl()
     {
-        Vector3 input = _player.transform.right * _player.MoveInput.x + _player.transform.forward * _player.MoveInput.y;
+        Vector3 cameraForward = _cameraTransform.forward;
+        Vector3 cameraRight = _cameraTransform.right;
+        
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+        
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+        
+        Vector3 input = cameraRight * _player.MoveInput.x + cameraForward * _player.MoveInput.y;
         
         float maxSpeed = _player.IsHoldingRun ? _values.MaxRunSpeed : _values.MaxWalkSpeed;
         
@@ -59,5 +71,25 @@ public class InAirState : IState
             current.y, 
             newHorizontal.z
         );
+    }
+    
+    private void RotateTowardsMovement()
+    {
+        Vector3 movementDirection = new Vector3(
+            _player.RB.linearVelocity.x, 
+            0f, 
+            _player.RB.linearVelocity.z
+        );
+        
+        if (movementDirection.magnitude > 0.1f && _player.MoveInput.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            
+            _player.transform.rotation = Quaternion.Slerp(
+                _player.transform.rotation,
+                targetRotation,
+                _values.RotationSpeed * Time.fixedDeltaTime
+            );
+        }
     }
 }
