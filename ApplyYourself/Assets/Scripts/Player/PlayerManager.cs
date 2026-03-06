@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private PlayerValues playerValues;
     [SerializeField] private WallCheck wallCheck;
+    [SerializeField] private Camera playerCamera;
     
     private StateMachine stateMachine;
     
@@ -23,10 +24,10 @@ public class PlayerManager : MonoBehaviour
         
         climbingState = new ClimbingState(playerInput, playerValues, wallCheck);
         idleState = new IdleState(playerInput, playerValues);
-        inAirState = new InAirState(playerInput, playerValues);
+        inAirState = new InAirState(playerInput, playerValues, playerCamera.transform);
         jumpingState = new JumpingState(playerInput, playerValues);
-        runningState = new RunningState(playerInput, playerValues);
-        walkingState = new WalkingState(playerInput, playerValues);
+        runningState = new RunningState(playerInput, playerValues, playerCamera.transform);
+        walkingState = new WalkingState(playerInput, playerValues, playerCamera.transform);
         
         // climbing transition
         stateMachine.AddTransition(new Transition(
