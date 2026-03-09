@@ -8,6 +8,7 @@ public class MossPainter : MonoBehaviour
     [SerializeField] private float rayCastDistance = 1.5f;
     [SerializeField] private float brushRadiusWorld = 0.2f;
     [SerializeField] private bool showGizmo;
+    [SerializeField] private bool drawWhite;
 
     private Vector3 lastPaintPos;
     private MossSurface currentSurface;
@@ -42,7 +43,8 @@ public class MossPainter : MonoBehaviour
 
         currentSurface.PaintCircle(
             hit.textureCoord,
-            brushRadiusWorld
+            brushRadiusWorld,
+            drawWhite
         );
 
         lastPaintPos = transform.position;

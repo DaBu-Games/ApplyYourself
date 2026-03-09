@@ -80,7 +80,7 @@ public class MossSurface : MonoBehaviour
             growables.Add(obj);
     }
 
-    public void PaintCircle(Vector2 uv, float radiusWorld)
+    public void PaintCircle(Vector2 uv, float radiusWorld, bool paintWhite)
     {
         int cx = (int)(uv.x * textureSize);
         int cy = (int)(uv.y * textureSize);
@@ -105,20 +105,34 @@ public class MossSurface : MonoBehaviour
                 if (distSq > radius * radius) continue;
 
                 int index = py * textureSize + px;
-
-                if (pixels[index].r < 1f)
+                
+                if (paintWhite)
                 {
-                    pixels[index].r = 1f;
-                    paintedSomething = true;
-                    changedPixels.Add(index);
+                    if (pixels[index].r < 1f)
+                    {
+                        pixels[index].r = 1f;
+                        paintedSomething = true;
+                        changedPixels.Add(index);
+                    }
+                }
+                else
+                {
+                    if (pixels[index].r != 0f)
+                    {
+                        pixels[index].r = 0f;
+                        paintedSomething = true;
+                    }
                 }
             }
         }
 
         if (paintedSomething)
         {
-            CheckGrowables();
-            SpawnFromChangedPixels();
+            if (paintWhite)
+            {
+                CheckGrowables();
+                SpawnFromChangedPixels();
+            }
             
             mossMask.SetPixels(pixels);
             mossMask.Apply();

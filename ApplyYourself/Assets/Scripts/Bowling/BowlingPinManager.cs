@@ -42,7 +42,7 @@ public class BowlingPinManager : MonoBehaviour
             pin.Initialize(collisionTag);
         }
         
-        Debug.Log($"Found {pins.Count} bowling pins");
+        //Debug.Log($"Found {pins.Count} bowling pins");
     }
 
     private void ResetPins()
