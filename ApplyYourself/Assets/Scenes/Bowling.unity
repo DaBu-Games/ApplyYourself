@@ -6179,6 +6179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5558523130831266630, guid: 3bc3ea959e4c8f7498e87ad0d5846e37, type: 3}
+      propertyPath: fillIn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5731236878909134076, guid: 3bc3ea959e4c8f7498e87ad0d5846e37, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 1024
@@ -9794,17 +9798,6 @@ Transform:
   - {fileID: 1912177338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1395677580 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4587820143243036737, guid: 93710782c46d2604291196284b0310ce, type: 3}
-  m_PrefabInstance: {fileID: 1602016977544702055}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd742e2146c4552867ef25e6a8204b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
 --- !u!1001 &1429437697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9860,6 +9853,10 @@ PrefabInstance:
     - target: {fileID: 4395631122452997319, guid: 3bc3ea959e4c8f7498e87ad0d5846e37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558523130831266630, guid: 3bc3ea959e4c8f7498e87ad0d5846e37, type: 3}
+      propertyPath: fillIn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5731236878909134076, guid: 3bc3ea959e4c8f7498e87ad0d5846e37, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -18587,18 +18584,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BowlingBall
       objectReference: {fileID: 0}
-    - target: {fileID: 5214431995401547038, guid: 93710782c46d2604291196284b0310ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2477511411847689622, guid: 660d3935d1398384b84e8ac6fdda5a79, type: 3}
-    - target: {fileID: 6599238821746584760, guid: 93710782c46d2604291196284b0310ce, type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 1395677580}
-    - target: {fileID: 8273727294810740177, guid: 93710782c46d2604291196284b0310ce, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: -3846018093981099296, guid: 660d3935d1398384b84e8ac6fdda5a79, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -30,7 +30,7 @@ public class BowlingBall : MossPainter
     {
         changedPixels += currentSurface.PaintCircle(
             hit.textureCoord,
-            transform.localScale.x / 3,
+            transform.localScale.x / 2,
             drawWhite
         );
         
