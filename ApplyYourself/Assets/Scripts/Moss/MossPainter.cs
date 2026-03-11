@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class MossPainter : MonoBehaviour
 {
-    [SerializeField] private GroundCheck groundCheck;
+    [SerializeField] protected GroundCheck groundCheck;
     [SerializeField] private float paintDistance = 0.3f;
-    [SerializeField] private float rayCastDistance = 1.5f;
-    [SerializeField] private float brushRadiusWorld = 0.2f;
+    [SerializeField] protected float rayCastDistance = 1.5f;
+    [SerializeField] protected float brushRadiusWorld = 0.2f;
     [SerializeField] private bool showGizmo;
-    [SerializeField] private bool drawWhite;
+    [SerializeField] protected bool drawWhite;
 
     private Vector3 lastPaintPos;
-    private MossSurface currentSurface;
+    protected MossSurface currentSurface;
     private Collider currentCollider;
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance || !groundCheck.IsGrounded!)
+        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance || !groundCheck.IsGrounded)
             return;
 
         if (!Physics.Raycast(
                 transform.position,
-                -transform.up,
+                Vector3.down,
                 out RaycastHit hit,
                 rayCastDistance))
             return;
@@ -39,15 +39,19 @@ public class MossPainter : MonoBehaviour
         
         if (!currentSurface)
             return;
-        
 
+        PaintOnSurface(hit);
+
+        lastPaintPos = transform.position;
+    }
+
+    protected virtual void PaintOnSurface(RaycastHit hit)
+    {
         currentSurface.PaintCircle(
             hit.textureCoord,
             brushRadiusWorld,
             drawWhite
         );
-
-        lastPaintPos = transform.position;
     }
     
     private void OnDrawGizmos()
@@ -55,8 +59,8 @@ public class MossPainter : MonoBehaviour
         if(!showGizmo)
             return;
         
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, -transform.up * rayCastDistance);
+        Gizmos.color = Color.purple;
+        Gizmos.DrawRay(transform.position, Vector3.down * rayCastDistance);
     }
 
 }

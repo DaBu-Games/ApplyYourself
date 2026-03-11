@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MossChunk
 {
@@ -12,6 +13,8 @@ public class MossChunk
     private MeshRenderer meshRenderer;
     
     private MossSettings mossSettings;
+    
+    private Dictionary<int, List<Vector3>> positionsPerType = new Dictionary<int, List<Vector3>>();
     
     public Vector3 WorldPosition => chunkObject.transform.position;
     
@@ -38,10 +41,48 @@ public class MossChunk
         {
             list = new List<Matrix4x4>();
             matricesPerType[mossTypeIndex] = list;
+            
+            positionsPerType[mossTypeIndex] = new List<Vector3>();
         }
 
         list.Add(matrix);
+        positionsPerType[mossTypeIndex].Add(matrix.GetColumn(3));
+        
         hasChanges = true;
+    }
+    
+    public void RemoveMossAt(Vector3 localPosition)
+    {
+        bool removed = false;
+        
+        foreach (var type in matricesPerType.Keys.ToList()) // ToList to avoid modification during iteration
+        {
+            var matrices = matricesPerType[type];
+            var positions = positionsPerType[type];
+            
+            for (int i = positions.Count - 1; i >= 0; i--)
+            {
+                // Check if position is close enough (within threshold)
+                if (Vector3.Distance(positions[i], localPosition) < 0.1f)
+                {
+                    positions.RemoveAt(i);
+                    matrices.RemoveAt(i);
+                    removed = true;
+                }
+            }
+            
+            // Clean up empty lists
+            if (matrices.Count == 0)
+            {
+                matricesPerType.Remove(type);
+                positionsPerType.Remove(type);
+            }
+        }
+        
+        if (removed)
+        {
+            hasChanges = true;
+        }
     }
     
     public void UpdateMesh()

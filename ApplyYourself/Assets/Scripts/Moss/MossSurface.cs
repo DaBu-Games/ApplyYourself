@@ -20,6 +20,7 @@ public class MossSurface : MonoBehaviour
     private bool[] visited;
     private Stack<int> stack;
     private List<GrowableObject> growables = new List<GrowableObject>();
+    private List<GrowableObject> grownObjects = new List<GrowableObject>();
     
     private Renderer mossRenderer;
     private Dictionary<Vector2Int, MossChunk> mossChunks;
@@ -80,7 +81,7 @@ public class MossSurface : MonoBehaviour
             growables.Add(obj);
     }
 
-    public void PaintCircle(Vector2 uv, float radiusWorld, bool paintWhite)
+    public int PaintCircle(Vector2 uv, float radiusWorld, bool paintWhite)
     {
         int cx = (int)(uv.x * textureSize);
         int cy = (int)(uv.y * textureSize);
@@ -121,6 +122,7 @@ public class MossSurface : MonoBehaviour
                     {
                         pixels[index].r = 0f;
                         paintedSomething = true;
+                        changedPixels.Add(index);
                     }
                 }
             }
@@ -133,10 +135,20 @@ public class MossSurface : MonoBehaviour
                 CheckGrowables();
                 SpawnFromChangedPixels();
             }
+            else
+            {
+                CheckGrownObjects();
+                DeleteFromChangedPixels();
+            }
             
             mossMask.SetPixels(pixels);
             mossMask.Apply();
+            int pixelCount = changedPixels.Count;
+            changedPixels.Clear();
+            return pixelCount;
         }
+
+        return 0;
     }
     
     private void CheckGrowables()
@@ -149,6 +161,23 @@ public class MossSurface : MonoBehaviour
             {
                 obj.Grow();
                 growables.RemoveAt(i);
+                grownObjects.Add(obj);
+            }
+        }
+    }
+
+    private void CheckGrownObjects()
+    {
+        for (int i = grownObjects.Count - 1; i >= 0; i--)
+        {
+            GrowableObject obj = grownObjects[i];
+
+            if (!IsAreaEnclosed(obj.UV))
+            {
+                obj.UnGrow();
+                
+                grownObjects.RemoveAt(i);
+                growables.Add(obj);
             }
         }
     }
@@ -248,8 +277,32 @@ public class MossSurface : MonoBehaviour
             if (spawnCount > 0)
                 mossSpawned[index] = true;
         }
-        
-        changedPixels.Clear();
+    }
+
+    private void DeleteFromChangedPixels()
+    {
+        foreach (int index in changedPixels)
+        {
+            if (!mossSpawned[index])
+                continue;
+            
+            Vector2 uv = IndexToUV(index);
+            
+            if (TryGetWorldFromUV(uv, out Vector3 worldPos, out Vector3 normal))
+            {
+                Vector2Int chunkKey = new Vector2Int(
+                    Mathf.FloorToInt(worldPos.x / chunkSize),
+                    Mathf.FloorToInt(worldPos.z / chunkSize)
+                );
+
+                if (mossChunks.TryGetValue(chunkKey, out MossChunk chunk))
+                {
+                    chunk.RemoveMossAt(worldPos - chunk.WorldPosition);
+                }
+            }
+            
+            mossSpawned[index] = false;
+        }
     }
     
     private Vector2 IndexToUV(int index)

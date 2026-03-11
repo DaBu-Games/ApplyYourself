@@ -29,4 +29,13 @@ public class GrowableObject : MonoBehaviour
         transform.localScale *= 1.5f;
         //Debug.Log(name + " grew!");
     }
+
+    public void UnGrow()
+    {
+        if(!hasGrown)
+            return;
+        
+        hasGrown = false;
+        transform.localScale *= 0.75f;
+    }
 }
