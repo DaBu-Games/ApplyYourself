@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class MossSurface : MonoBehaviour
 {
     [SerializeField] private int textureSize = 512;
-    [SerializeField] private bool fillIn = false;
     [SerializeField] private MossSettings mossSettings;
 
     private Texture2D mossMask;
@@ -19,8 +18,8 @@ public class MossSurface : MonoBehaviour
     
     private bool[] visited;
     private Stack<int> stack;
-    private List<GrowableObject> growables = new List<GrowableObject>();
-    private List<GrowableObject> grownObjects = new List<GrowableObject>();
+    private List<BaseGrowable> growables = new List<BaseGrowable>();
+    private List<BaseGrowable> grownObjects = new List<BaseGrowable>();
     
     private Renderer mossRenderer;
     private Dictionary<Vector2Int, MossChunk> mossChunks;
@@ -75,7 +74,7 @@ public class MossSurface : MonoBehaviour
         mossChunks = new Dictionary<Vector2Int, MossChunk>();
     }
 
-    public void RegisterGrowable(GrowableObject obj)
+    public void RegisterGrowable(BaseGrowable obj)
     {
         if (!growables.Contains(obj))
             growables.Add(obj);
@@ -155,13 +154,15 @@ public class MossSurface : MonoBehaviour
     {
         for (int i = growables.Count - 1; i >= 0; i--)
         {
-            GrowableObject obj = growables[i];
+            BaseGrowable obj = growables[i];
 
-            if (IsAreaEnclosed(obj.UV))
+            if (IsAreaEnclosed(obj.UV, obj.FillIn))
             {
                 obj.Grow();
                 growables.RemoveAt(i);
-                grownObjects.Add(obj);
+                
+                if(obj.CanUnGrow)
+                    grownObjects.Add(obj);
             }
         }
     }
@@ -170,7 +171,7 @@ public class MossSurface : MonoBehaviour
     {
         for (int i = grownObjects.Count - 1; i >= 0; i--)
         {
-            GrowableObject obj = grownObjects[i];
+            BaseGrowable obj = grownObjects[i];
 
             if (!IsAreaEnclosed(obj.UV))
             {
@@ -182,7 +183,7 @@ public class MossSurface : MonoBehaviour
         }
     }
     
-    private bool IsAreaEnclosed(Vector2 uv)
+    private bool IsAreaEnclosed(Vector2 uv, bool fillIn = false)
     {
         int startX = (int)(uv.x * textureSize);
         int startY = (int)(uv.y * textureSize);

@@ -1,12 +1,16 @@
-using System;
 using UnityEngine;
 
-public class GrowableObject : MonoBehaviour
+public class BaseGrowable : MonoBehaviour
 {
+    [SerializeField] private bool fillIn;
+    [SerializeField] private bool canUnGrow;
     public Vector2 UV { get; private set; }
-    private bool hasGrown = false;
-
-    private void Start()
+    protected bool hasGrown = false;
+    
+    public bool FillIn => fillIn;
+    public bool CanUnGrow => canUnGrow;
+    
+    void Start()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
         {
@@ -20,22 +24,13 @@ public class GrowableObject : MonoBehaviour
         }
     }
 
-    public void Grow()
+    public virtual void Grow()
     {
-        if(hasGrown) 
-            return;
         
-        hasGrown = true;
-        transform.localScale *= 1.5f;
-        //Debug.Log(name + " grew!");
     }
 
-    public void UnGrow()
+    public virtual void UnGrow()
     {
-        if(!hasGrown)
-            return;
         
-        hasGrown = false;
-        transform.localScale *= 0.75f;
     }
 }
