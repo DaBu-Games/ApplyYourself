@@ -517,6 +517,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4917515849921905873, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: drawWhite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917515849921905873, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
       propertyPath: showGizmo
       value: 0
       objectReference: {fileID: 0}
@@ -616,6 +620,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7795598368562635442, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 7065383779369641925}
     - target: {fileID: 7827637243778223203, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
       propertyPath: m_Name
       value: Body

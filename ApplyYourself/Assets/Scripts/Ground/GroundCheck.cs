@@ -17,7 +17,7 @@ public class GroundCheck : MonoBehaviour
 
     private void CheckForGround()
     {
-        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, range, _groundLayer))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, range, _groundLayer))
         {
             IsGrounded = true;
             LastOnGroundTime = Time.time;
@@ -34,6 +34,8 @@ public class GroundCheck : MonoBehaviour
             return;
         
         Gizmos.color = IsGrounded ? Color.green : Color.red;
-        Gizmos.DrawRay(transform.position, -transform.up * range);
+        Gizmos.DrawRay(transform.position, Vector3.down * range);
     }
+    
+    public void SetRange(float setRange) => range = setRange;
 }
