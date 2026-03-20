@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6dbb96840b493aa937fafcffeca1bc, type: 3}
   m_Name: PlayerValues
   m_EditorClassIdentifier: Assembly-CSharp::PlayerValues
+  RotationSpeed: 10
   MaxWalkSpeed: 8
   WalkAcceleration: 55
   Deceleration: 20
@@ -20,7 +21,8 @@ MonoBehaviour:
   JumpInputBufferTime: 0.15
   LeaveGroundBufferTime: 0.25
   JumpForce: 10
-  MaxClimbSpeed: 6
-  ClimbAcceleration: 1.5
+  MaxClimbSpeed: 12
+  ClimbAcceleration: 80
+  ClimbStickForce: 25
   Gravity: -20
   FallingGravity: -40

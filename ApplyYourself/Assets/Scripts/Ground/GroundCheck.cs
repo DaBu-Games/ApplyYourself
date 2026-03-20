@@ -4,7 +4,8 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] float _radius = 0.3f;
+    [SerializeField] private float range;
+    [SerializeField] private bool showGizmo;
     
     public bool IsGrounded { get; private set; }
     public float LastOnGroundTime { get; private set; }
@@ -16,25 +17,25 @@ public class GroundCheck : MonoBehaviour
 
     private void CheckForGround()
     {
-        Collider[] hits = Physics.OverlapSphere(
-            transform.position,
-            _radius,
-            _groundLayer,
-            QueryTriggerInteraction.Ignore
-        );
-
-        if (hits.Length > 0)
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, range, _groundLayer))
         {
             IsGrounded = true;
             LastOnGroundTime = Time.time;
         }
         else
+        {
             IsGrounded = false;
+        }
     }
     
     private void OnDrawGizmos()
     {
+        if(!showGizmo)
+            return;
+        
         Gizmos.color = IsGrounded ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(transform.position, _radius);
+        Gizmos.DrawRay(transform.position, Vector3.down * range);
     }
+    
+    public void SetRange(float setRange) => range = setRange;
 }

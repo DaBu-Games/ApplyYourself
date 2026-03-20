@@ -3,22 +3,25 @@ using UnityEngine;
 
 public class MossPainter : MonoBehaviour
 {
+    [SerializeField] protected GroundCheck groundCheck;
     [SerializeField] private float paintDistance = 0.3f;
-    [SerializeField] private float rayCastDistance = 1.5f;
-    [SerializeField] private float brushRadiusWorld = 0.2f;
+    [SerializeField] protected float rayCastDistance = 1.5f;
+    [SerializeField] protected float brushRadiusWorld = 0.2f;
+    [SerializeField] private bool showGizmo;
+    [SerializeField] protected bool drawWhite;
 
     private Vector3 lastPaintPos;
-    private MossSurface currentSurface;
+    protected MossSurface currentSurface;
     private Collider currentCollider;
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance)
+        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance || !groundCheck.IsGrounded)
             return;
 
         if (!Physics.Raycast(
                 transform.position,
-                -transform.up,
+                Vector3.down,
                 out RaycastHit hit,
                 rayCastDistance))
             return;
@@ -36,14 +39,28 @@ public class MossPainter : MonoBehaviour
         
         if (!currentSurface)
             return;
-        
 
-        currentSurface.PaintCircle(
-            hit.textureCoord,
-            brushRadiusWorld
-        );
+        PaintOnSurface(hit);
 
         lastPaintPos = transform.position;
+    }
+
+    protected virtual void PaintOnSurface(RaycastHit hit)
+    {
+        currentSurface.PaintCircle(
+            hit.textureCoord,
+            brushRadiusWorld,
+            drawWhite
+        );
+    }
+    
+    private void OnDrawGizmos()
+    {
+        if(!showGizmo)
+            return;
+        
+        Gizmos.color = Color.purple;
+        Gizmos.DrawRay(transform.position, Vector3.down * rayCastDistance);
     }
 
 }

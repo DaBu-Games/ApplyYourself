@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Platform
+  - BowlingBall
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - Ground
   - PlatformMove
   - Wall
-  - 
-  - 
-  - 
-  - 
+  - MossSurface
+  - Player
+  - BowlingBall
+  - VinesLayer
   - 
   - 
   - 

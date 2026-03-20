@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "PlayerValues", menuName = "Player/values")]
 public class PlayerValues : ScriptableObject
 {
+    [Header("Rotation")] 
+    public float RotationSpeed = 10f;
+    
     [Header("Walk values")]
     public float MaxWalkSpeed = 6f;
     public float WalkAcceleration = 1.5f;
@@ -25,6 +28,7 @@ public class PlayerValues : ScriptableObject
     [Header("Climb values")]
     public float MaxClimbSpeed = 6f;
     public float ClimbAcceleration = 1.5f;
+    public float ClimbStickForce = 1.5f;
     
     [Header("physics values")]
     public float Gravity = -9.81f;
