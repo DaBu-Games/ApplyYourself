@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -15,12 +16,12 @@ public class SpawnObjectOnCollision : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
-        boxCollider.isTrigger = true;
+        UpdateHitBox();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player") && growable.HasGrown)
+        if (other.gameObject.CompareTag("Player") && growable.HasGrown)
         {
             SpawnObject();
         }

@@ -86,8 +86,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6679497, y: 5, z: 0.7171173}
+  m_Center: {x: -0.032815933, y: 2.5, z: -0.14144135}
 --- !u!114 &3457080251406788874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c8326456634c2db7a98bd7d2b8970c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnObjectOnCollision
-  growable: {fileID: 0}
-  objectToSpawn: {fileID: 0}
-  maxSpawnCount: 0
-  spawnOffset: {x: 0, y: 0, z: 0}
+  growable: {fileID: 4494509427298797353}
+  objectToSpawn: {fileID: 5131495365670685443, guid: 93710782c46d2604291196284b0310ce, type: 3}
+  maxSpawnCount: 3
+  spawnOffset: {x: 2, y: 6, z: 2}
 --- !u!1001 &4874267874079838806
 PrefabInstance:
   m_ObjectHideFlags: 0

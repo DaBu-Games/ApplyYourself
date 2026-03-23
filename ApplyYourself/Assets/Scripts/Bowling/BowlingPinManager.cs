@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 
 public class BowlingPinManager : MonoBehaviour
 {
     [SerializeField] private float timeAfterReset = 2f;
     [SerializeField] private string collisionTag;
+    [SerializeField] private ParticleSystem particle;
     
-    private List<BowlingPin> pins = new List<BowlingPin>();
+    private List<BowlingPin> pins = new();
     private int knockOverCount = 0;
     private bool allKnockedOver = false;
 
@@ -61,6 +60,7 @@ public class BowlingPinManager : MonoBehaviour
         if (knockOverCount >= pins.Count)
         {
             allKnockedOver = true;
+            particle.Play();
         }
     }
 }
