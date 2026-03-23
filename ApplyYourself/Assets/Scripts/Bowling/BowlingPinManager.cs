@@ -7,6 +7,7 @@ public class BowlingPinManager : MonoBehaviour
     [SerializeField] private float timeAfterReset = 2f;
     [SerializeField] private string collisionTag;
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private KoroksManager koroksManager;
     
     private List<BowlingPin> pins = new();
     private int knockOverCount = 0;
@@ -61,6 +62,7 @@ public class BowlingPinManager : MonoBehaviour
         {
             allKnockedOver = true;
             particle.Play();
+            koroksManager.StartCheeringSequence();
         }
     }
 }
