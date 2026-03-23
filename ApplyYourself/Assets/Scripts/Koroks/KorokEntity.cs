@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public enum KorokEmotion
 {
@@ -29,10 +27,23 @@ public class KorokEntity : MonoBehaviour
     [SerializeField] private KorokEmotion currentEmotion = KorokEmotion.Excited;
     [SerializeField] private MeshRenderer frontMeshRenderer;
     [SerializeField] private MeshRenderer backMeshRenderer;
+    
+    private float currentSpeed;
+    private float cheeringHeight;
+    private bool isCheering = false;
+    private Vector3 startPosition;
+    private Coroutine cheeringCoroutine;
 
     private void Awake()
     {
         UpdateSpriteRenderers();
+    }
+
+    public void Initialize(float speed, float height)
+    {
+        currentSpeed = speed;
+        cheeringHeight = height;
+        startPosition = transform.position;
     }
 
     public void SetEmotion(KorokEmotion emotion)
@@ -45,5 +56,43 @@ public class KorokEntity : MonoBehaviour
     {
         frontMeshRenderer.material = emotionPairs[(int)currentEmotion].frontMaterial;
         backMeshRenderer.material = emotionPairs[(int)currentEmotion].backMaterial;
+    }
+
+    public void StartCheering()
+    {
+        if (!isCheering)
+        {
+            isCheering = true;
+            cheeringCoroutine = StartCoroutine(Cheering());
+        }
+    }
+
+    public void StopCheering()
+    {
+        if (isCheering)
+        {
+            isCheering = false;
+            
+            if (cheeringCoroutine != null)
+            {
+                StopCoroutine(cheeringCoroutine);
+                cheeringCoroutine = null;
+            }
+            
+            transform.position = startPosition;
+        }
+    }
+
+    private IEnumerator Cheering()
+    {
+        while (isCheering)
+        {
+            float sinValue = Mathf.Sin(Time.time * currentSpeed);
+            float yOffset = Mathf.Abs(sinValue) * cheeringHeight;
+            
+            transform.position = startPosition + new Vector3(0, yOffset, 0);
+            
+            yield return null;
+        }
     }
 }
