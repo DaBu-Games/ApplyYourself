@@ -66,15 +66,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3542852092398272455, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1248441
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3542852092398272455, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.131
+      objectReference: {fileID: 0}
+    - target: {fileID: -3542852092398272455, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1538112130698044685, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.15
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1538112130698044685, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.431
+      objectReference: {fileID: 0}
+    - target: {fileID: -1538112130698044685, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: m_Name
-      value: Tree (1)
+      value: Tree1
       objectReference: {fileID: 0}
     - target: {fileID: 7339356831882890532, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
