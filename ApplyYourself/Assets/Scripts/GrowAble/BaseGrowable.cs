@@ -16,6 +16,13 @@ public class BaseGrowable : MonoBehaviour
     
     void Start()
     {
+        if (GetComponent<MossPainterOnStart>())
+        {
+            HasGrown = true;
+            OnGrowthChanged?.Invoke();
+            return;
+        }
+        
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
         if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit, 5f))
         {
