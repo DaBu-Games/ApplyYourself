@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beton
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3c826d98d06afc44c989b8930cc42b85, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
