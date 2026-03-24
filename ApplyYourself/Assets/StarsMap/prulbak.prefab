@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6991943662330167373}
   - component: {fileID: 850141203315069632}
   - component: {fileID: 3698179323140740367}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: prulbak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
