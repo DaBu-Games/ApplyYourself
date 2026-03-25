@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - BowlingBall
+  - FootBall
   layers:
   - Default
   - TransparentFX

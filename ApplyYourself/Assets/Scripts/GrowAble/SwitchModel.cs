@@ -7,7 +7,7 @@ public class SwitchModel : MonoBehaviour
     [SerializeField]private GameObject unGrownObject;
     [SerializeField]private GameObject grownObject;
 
-    private void Start()
+    private void Awake()
     {
         UpdateModel();
     }
