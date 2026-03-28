@@ -155,13 +155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowlingBall
   groundCheck: {fileID: 4587820143243036737}
-  paintDistance: 0.3
+  paintDistance: 0.6
   rayCastDistance: 1.55
   brushRadiusWorld: 0.2
   showGizmo: 1
   drawWhite: 0
   minSize: 1
-  maxSize: 10
+  maxSize: 3
   growForEveryPixel: 50
   growAmount: 5
   growthSpeed: 2
