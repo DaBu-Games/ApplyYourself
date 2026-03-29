@@ -48,12 +48,107 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2519092360280523269, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1558721567721526513, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e5290cd61760fdf48967e1247331389f, type: 3}
       propertyPath: m_Name
       value: Paal
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066235068171334618, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066235068171334618, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066235068171334618, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942816438788599155, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942816438788599155, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942816438788599155, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3050803502643472956}
+    - targetCorrespondingSourceObject: {fileID: -2519092360280523269, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 711474170492797788}
   m_SourcePrefab: {fileID: 100100000, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+--- !u!1 &1949301103700379657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2519092360280523269, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+  m_PrefabInstance: {fileID: 5046052343079155186}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &711474170492797788
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949301103700379657}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6657180443270484345, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+--- !u!1 &5388068835801663651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e5290cd61760fdf48967e1247331389f, type: 3}
+  m_PrefabInstance: {fileID: 5046052343079155186}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &-3050803502643472956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5388068835801663651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42, y: 11.05, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
