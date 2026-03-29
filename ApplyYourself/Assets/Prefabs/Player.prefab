@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316270776170760782}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.19830179, y: -0.44045085, z: -0.10041344, w: 0.86982566}
-  m_LocalPosition: {x: 3.9690475, y: -0.36824083, z: -2.9142456}
+  m_LocalRotation: {x: -0.21465737, y: -0.23661938, z: -0.05368737, w: 0.94607145}
+  m_LocalPosition: {x: 2.3190231, y: -0.3567047, z: -4.346054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -125,7 +125,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: -10
+    Value: -9.865792
     Center: 17.5
     Range: {x: -10, y: 45}
     Wrap: 0
@@ -301,8 +301,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4942500536552899829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03851396, y: -0.2862289, z: -0.123639114, w: 0.9493699}
-  m_LocalPosition: {x: 2.9521878, y: 0.012547135, z: 1.0160079}
+  m_LocalRotation: {x: -0.0010062966, y: -0.19997218, z: -0.095923625, w: 0.97509426}
+  m_LocalPosition: {x: 2.1297946, y: -0.2203426, z: 0.4338364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -488,6 +488,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5276271677273600738}
+    - target: {fileID: 4917515849921905873, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
+      propertyPath: rayCastDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4917515849921905873, guid: c5091be5315e1c048a7d60fb21587070, type: 3}
       propertyPath: brushRadiusWorld
       value: 0.6
