@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5278411405716025489, guid: 93710782c46d2604291196284b0310ce, type: 3}
       propertyPath: m_Mass
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278411405716025489, guid: 93710782c46d2604291196284b0310ce, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 6599238821746584760, guid: 93710782c46d2604291196284b0310ce, type: 3}
       propertyPath: maxSize
@@ -70,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6599238821746584760, guid: 93710782c46d2604291196284b0310ce, type: 3}
       propertyPath: growthSpeed
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8273727294810740177, guid: 93710782c46d2604291196284b0310ce, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

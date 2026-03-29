@@ -123,7 +123,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5131495365670685443}
   serializedVersion: 5
-  m_Mass: 2.5
+  m_Mass: 1.5
   m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   maxSize: 3
   growForEveryPixel: 50
   growAmount: 10
-  growthSpeed: 10
+  growthSpeed: 7
 --- !u!114 &4587820143243036737
 MonoBehaviour:
   m_ObjectHideFlags: 0
