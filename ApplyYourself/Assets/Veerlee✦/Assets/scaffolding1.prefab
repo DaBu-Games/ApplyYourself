@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 64d3bd255f1b4df4281f0bd5e34341cb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3173cc9653790fd459f901c70f550429, type: 2}
+      objectReference: {fileID: 2100000, guid: 55d595458ab11f648a5ab9239b0cf418, type: 2}
     - target: {fileID: 919132149155446097, guid: 64d3bd255f1b4df4281f0bd5e34341cb, type: 3}
       propertyPath: m_Name
       value: scaffolding1
