@@ -15,6 +15,8 @@ public class KoroksManager : MonoBehaviour
     
     private List<KorokEntity> koroks = new();
 
+    [SerializeField] private GameObject invisibleWall;
+
     private void Start()
     {
         GetKoroks();
@@ -52,6 +54,11 @@ public class KoroksManager : MonoBehaviour
 
     private void StartCheering()
     {
+        if (invisibleWall != null)
+        {
+            invisibleWall.SetActive(false);
+        }
+
         foreach (var korok in koroks)
         {
             korok.SetEmotion(KorokEmotion.Excited);

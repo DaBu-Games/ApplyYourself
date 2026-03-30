@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8900893509612261638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9082064331705695061}
+  m_Layer: 0
+  m_Name: BallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9082064331705695061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900893509612261638}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.8027191, y: 11.95, z: 4.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1088402996502051182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &729936008468303392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,6 +204,10 @@ PrefabInstance:
       propertyPath: unGrownObject
       value: 
       objectReference: {fileID: 1724140588859147995}
+    - target: {fileID: 3457080251406788874, guid: 606fc041205a76546bf0e0d89a6e8055, type: 3}
+      propertyPath: ballSpawn
+      value: 
+      objectReference: {fileID: 9082064331705695061}
     - target: {fileID: 4325460104394535332, guid: 606fc041205a76546bf0e0d89a6e8055, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -208,6 +243,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1264145502788179256, guid: 606fc041205a76546bf0e0d89a6e8055, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8846876779353571943}
+    - targetCorrespondingSourceObject: {fileID: 1264145502788179256, guid: 606fc041205a76546bf0e0d89a6e8055, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9082064331705695061}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 606fc041205a76546bf0e0d89a6e8055, type: 3}
 --- !u!4 &1088402996502051182 stripped

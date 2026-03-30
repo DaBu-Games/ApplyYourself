@@ -161,7 +161,7 @@ MonoBehaviour:
   showGizmo: 1
   drawWhite: 0
   minSize: 1
-  maxSize: 3
+  maxSize: 2.5
   growForEveryPixel: 50
   growAmount: 10
   growthSpeed: 7

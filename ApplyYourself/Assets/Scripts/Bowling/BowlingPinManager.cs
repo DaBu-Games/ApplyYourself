@@ -14,6 +14,8 @@ public class BowlingPinManager : MonoBehaviour
     private bool allKnockedOver = false;
 
     private float lastKnockOverTime = 0f;
+
+
     
     private void Start()
     {

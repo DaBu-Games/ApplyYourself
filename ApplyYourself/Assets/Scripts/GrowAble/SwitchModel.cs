@@ -22,7 +22,7 @@ public class SwitchModel : MonoBehaviour
         growable.OnGrowthChanged -= UpdateModel;
     }
 
-    private void UpdateModel()
+    public virtual void UpdateModel()
     {
         if (growable.HasGrown)
         {
