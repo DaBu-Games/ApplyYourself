@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwitchModel : MonoBehaviour
 {
     [SerializeField]private BaseGrowable growable;
     [SerializeField]private GameObject unGrownObject;
     [SerializeField]private GameObject grownObject;
+
+    [SerializeField] private UnityEvent GrowCheer;
 
     private void Awake()
     {
@@ -26,6 +29,10 @@ public class SwitchModel : MonoBehaviour
     {
         if (growable.HasGrown)
         {
+            if (GrowCheer != null)
+            {
+                GrowCheer.Invoke();
+            }
             grownObject.SetActive(true);
             unGrownObject.SetActive(false);
         }
