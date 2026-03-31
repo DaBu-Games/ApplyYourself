@@ -12,6 +12,8 @@ public class KoroksManager : MonoBehaviour
     [SerializeField] private float bobHeight = 0.5f;
     [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private float maxSpeed = 2f;
+
+    private bool hasCheered;
     
     private List<KorokEntity> koroks = new();
 
@@ -38,6 +40,12 @@ public class KoroksManager : MonoBehaviour
 
     public virtual void StartCheeringSequence()
     {
+        if (!hasCheered)
+        {
+            CreatureCounter.Instance.AddCreature();
+            hasCheered = true;
+        }
+
         StartCoroutine(CheeringSequence());
     }
 
