@@ -15,20 +15,19 @@ public class KoroksManager : MonoBehaviour
     
     private List<KorokEntity> koroks = new();
 
-    [SerializeField] private GameObject invisibleWall;
 
-    private void Start()
+    public virtual void Start()
     {
         GetKoroks();
         InitializeKoroks();
     }
 
-    private void GetKoroks()
+    public virtual void GetKoroks()
     {
         koroks = GetComponentsInChildren<KorokEntity>().ToList();
     }
 
-    private void InitializeKoroks()
+    public virtual void InitializeKoroks()
     {
         for (int i = 0; i < koroks.Count; i++)
         {
@@ -36,14 +35,14 @@ public class KoroksManager : MonoBehaviour
             koroks[i].Initialize(individualSpeed, bobHeight);
         }
     }
-    
-    public void StartCheeringSequence()
+
+    public virtual void StartCheeringSequence()
     {
         StartCoroutine(CheeringSequence());
     }
 
     
-    private IEnumerator CheeringSequence()
+    public IEnumerator CheeringSequence()
     {
         StartCheering();
         
@@ -52,13 +51,8 @@ public class KoroksManager : MonoBehaviour
         StopCheering();
     }
 
-    private void StartCheering()
+    public virtual void StartCheering()
     {
-        if (invisibleWall != null)
-        {
-            invisibleWall.SetActive(false);
-        }
-
         foreach (var korok in koroks)
         {
             korok.SetEmotion(KorokEmotion.Excited);
@@ -66,7 +60,7 @@ public class KoroksManager : MonoBehaviour
         }
     }
 
-    private void StopCheering()
+    public virtual void StopCheering()
     {
         foreach (var korok in koroks)
         {
