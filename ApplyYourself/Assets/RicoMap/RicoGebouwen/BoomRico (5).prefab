@@ -73,9 +73,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7426217178541911112}
     m_Modifications:
+    - target: {fileID: 502298371201958702, guid: 4f631fda0865a8243a312fd3a46b9ef2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8360633746646502088, guid: 4f631fda0865a8243a312fd3a46b9ef2, type: 3}
       propertyPath: m_Name
       value: LittleTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360633746646502088, guid: 4f631fda0865a8243a312fd3a46b9ef2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9173023973702783090, guid: 4f631fda0865a8243a312fd3a46b9ef2, type: 3}
       propertyPath: m_LocalScale.x
@@ -156,9 +164,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7426217178541911112}
     m_Modifications:
+    - target: {fileID: 1604781885467452649, guid: e48ab3a002f3be6428f330c57fa83523, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096437336966551049, guid: e48ab3a002f3be6428f330c57fa83523, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4671511618546707133, guid: e48ab3a002f3be6428f330c57fa83523, type: 3}
       propertyPath: m_Name
       value: Tree1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671511618546707133, guid: e48ab3a002f3be6428f330c57fa83523, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5449174938783477767, guid: e48ab3a002f3be6428f330c57fa83523, type: 3}
       propertyPath: m_LocalPosition.x
