@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: m_Name
-      value: Tree1
+      value: Tree1 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       propertyPath: m_Layer
@@ -115,9 +115,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6779397890116671098}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7334548709199873203}
   m_SourcePrefab: {fileID: 100100000, guid: cac1aea6b2cec9244b0bc36179aae3e7, type: 3}
 --- !u!1 &4671511618546707133 stripped
 GameObject:
@@ -145,17 +142,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03, y: 0.4, z: 0.035}
   m_Center: {x: 0, y: 0.17, z: 0}
---- !u!114 &7334548709199873203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4671511618546707133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76963e3dbc63450891051d2a8e7b1842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MossPainterOnStart
-  paintRadius: 4
-  showGizmo: 1
