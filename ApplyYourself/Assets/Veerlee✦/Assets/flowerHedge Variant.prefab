@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: flowerHedge Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5938597969442878935, guid: 7a6aeef2075587d4599b9f23c937cf5e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6422682614977523565, guid: 7a6aeef2075587d4599b9f23c937cf5e, type: 3}
       propertyPath: m_LocalScale.y
       value: 150
