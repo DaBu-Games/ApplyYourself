@@ -10,6 +10,7 @@ public class CreatureCounter : MonoBehaviour
     [SerializeField] private int creatureCount = 0;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
+    [SerializeField] private Animator animator;
 
 
     private void Awake()
@@ -28,7 +29,7 @@ public class CreatureCounter : MonoBehaviour
 
     private void Start()
     {
-        textMeshPro.text = "Happy Creatures " + creatureCount.ToString();
+        textMeshPro.text = "x " + creatureCount.ToString();
 
     }
 
@@ -36,7 +37,14 @@ public class CreatureCounter : MonoBehaviour
     public void AddCreature()
     {
         creatureCount++;
-        textMeshPro.text = "Happy Creatures " + creatureCount.ToString();
+        textMeshPro.text = "x" + creatureCount.ToString();
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("CreatureGained") )
+        {
+            animator.SetTrigger("Reset");
+        }
+        
+        animator.SetTrigger("CreatureUp");
     }
 
 
