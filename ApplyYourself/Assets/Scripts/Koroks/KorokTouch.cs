@@ -11,9 +11,9 @@ public class KorokTouch : KoroksManager
         coll = GetComponent<SphereCollider>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag == "Player")
+        if (other.tag == "Player")
         {
             base.StartCheeringSequence();
         }
