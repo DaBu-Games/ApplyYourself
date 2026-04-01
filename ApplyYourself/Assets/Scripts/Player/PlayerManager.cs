@@ -88,6 +88,12 @@ public class PlayerManager : MonoBehaviour
             () => playerInput.IsGrounded && playerInput.MoveInput != Vector2.zero && playerInput.IsHoldingRun
         ));
         
+        stateMachine.AddTransition(new Transition(
+            inAirState,
+            jumpingState,
+            () => playerInput.IsJumpBufferd(playerValues.JumpInputBufferTime) && 
+                  playerInput.CanCyoteJump(playerValues.LeaveGroundBufferTime) && !playerInput.IsJumping
+        ));
         
         // jumping transition
         stateMachine.AddTransition(new Transition(
