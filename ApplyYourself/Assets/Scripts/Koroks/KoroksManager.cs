@@ -12,21 +12,24 @@ public class KoroksManager : MonoBehaviour
     [SerializeField] private float bobHeight = 0.5f;
     [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private float maxSpeed = 2f;
+
+    private bool hasCheered;
     
     private List<KorokEntity> koroks = new();
 
-    private void Start()
+
+    public virtual void Start()
     {
         GetKoroks();
         InitializeKoroks();
     }
 
-    private void GetKoroks()
+    public virtual void GetKoroks()
     {
         koroks = GetComponentsInChildren<KorokEntity>().ToList();
     }
 
-    private void InitializeKoroks()
+    public virtual void InitializeKoroks()
     {
         for (int i = 0; i < koroks.Count; i++)
         {
@@ -34,14 +37,20 @@ public class KoroksManager : MonoBehaviour
             koroks[i].Initialize(individualSpeed, bobHeight);
         }
     }
-    
-    public void StartCheeringSequence()
+
+    public virtual void StartCheeringSequence()
     {
+        if (!hasCheered)
+        {
+            CreatureCounter.Instance.AddCreature();
+            hasCheered = true;
+        }
+
         StartCoroutine(CheeringSequence());
     }
 
     
-    private IEnumerator CheeringSequence()
+    public IEnumerator CheeringSequence()
     {
         StartCheering();
         
@@ -50,7 +59,7 @@ public class KoroksManager : MonoBehaviour
         StopCheering();
     }
 
-    private void StartCheering()
+    public virtual void StartCheering()
     {
         foreach (var korok in koroks)
         {
@@ -59,7 +68,7 @@ public class KoroksManager : MonoBehaviour
         }
     }
 
-    private void StopCheering()
+    public virtual void StopCheering()
     {
         foreach (var korok in koroks)
         {

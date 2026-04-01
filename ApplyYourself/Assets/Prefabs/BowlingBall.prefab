@@ -124,7 +124,7 @@ Rigidbody:
   m_GameObject: {fileID: 5131495365670685443}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.7
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -155,16 +155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowlingBall
   groundCheck: {fileID: 4587820143243036737}
-  paintDistance: 0.3
+  paintDistance: 0.6
   rayCastDistance: 1.55
-  brushRadiusWorld: 0.2
+  brushRadiusWorld: 0.5
   showGizmo: 1
   drawWhite: 0
   minSize: 1
-  maxSize: 10
+  maxSize: 2.5
   growForEveryPixel: 50
-  growAmount: 5
-  growthSpeed: 2
+  growAmount: 10
+  growthSpeed: 7
 --- !u!114 &4587820143243036737
 MonoBehaviour:
   m_ObjectHideFlags: 0
