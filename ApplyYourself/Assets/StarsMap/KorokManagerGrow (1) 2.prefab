@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6234360704824349807
+--- !u!1 &1761183076057573610
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,100 +8,90 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2999959615294194178}
-  - component: {fileID: 9047716813643915232}
-  - component: {fileID: 5306170629188539717}
+  - component: {fileID: 3645387326630269549}
+  - component: {fileID: 4591473982672445031}
   m_Layer: 0
-  m_Name: KorokManagerTouch
+  m_Name: KorokManagerGrow (1) 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2999959615294194178
+--- !u!4 &3645387326630269549
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234360704824349807}
+  m_GameObject: {fileID: 1761183076057573610}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: 0.42463547, z: -0, w: 0.90536445}
+  m_LocalPosition: {x: 61.25, y: 1.817, z: -221.55}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7131213446754588581}
+  - {fileID: 2162468596879648904}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &9047716813643915232
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234360704824349807}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.95
-  m_Center: {x: 0, y: 0.81, z: 0}
---- !u!114 &5306170629188539717
+  m_LocalEulerAnglesHint: {x: 0, y: 50.255, z: 0}
+--- !u!114 &4591473982672445031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234360704824349807}
+  m_GameObject: {fileID: 1761183076057573610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547f7b05756a11441a41299a370d0f50, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ecaa741906d46edbbb4a3d927e04f66, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KorokTouch
-  cheerDuration: 3
+  m_EditorClassIdentifier: Assembly-CSharp::KoroksManager
+  cheerDuration: 5
   bobHeight: 0.5
   minSpeed: 10
   maxSpeed: 20
---- !u!1001 &2925420739655738967
+--- !u!1001 &6083421684172626298
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2999959615294194178}
+    m_TransformParent: {fileID: 3645387326630269549}
     m_Modifications:
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.22
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.22
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.22
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7234024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2421633
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.4399745
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.90536445
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.42463547
       objectReference: {fileID: 0}
     - target: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_LocalRotation.z
@@ -121,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787114691846247891, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: m_Name
-      value: Sprink_03 (1)
+      value: Sprink_03
       objectReference: {fileID: 0}
     - target: {fileID: 9072839099332613109, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
       propertyPath: currentEmotion
@@ -132,8 +122,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
---- !u!4 &7131213446754588581 stripped
+--- !u!4 &2162468596879648904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5363231288964051442, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
-  m_PrefabInstance: {fileID: 2925420739655738967}
+  m_PrefabInstance: {fileID: 6083421684172626298}
   m_PrefabAsset: {fileID: 0}
