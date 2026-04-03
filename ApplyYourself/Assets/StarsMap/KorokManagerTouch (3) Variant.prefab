@@ -74,6 +74,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4922363976140760458}
     m_Modifications:
+    - target: {fileID: 1124616919654322716, guid: 56d09d78150c4634da5118ef39a8720d, type: 3}
+      propertyPath: currentEmotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3413599218224682693, guid: 56d09d78150c4634da5118ef39a8720d, type: 3}
       propertyPath: m_Name
       value: Sprink_01
