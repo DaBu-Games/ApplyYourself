@@ -23,7 +23,7 @@ public class BaseGrowable : MonoBehaviour
             return;
         }
         
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
         if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit, 5f))
         {
             MossSurface surface = hit.collider.GetComponent<MossSurface>();
@@ -63,7 +63,7 @@ public class BaseGrowable : MonoBehaviour
         
         Vector3 rayStart = new Vector3(
             transform.position.x, 
-            transform.position.y + 4f, 
+            transform.position.y + 2f, 
             transform.position.z
         );
         

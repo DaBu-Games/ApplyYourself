@@ -8,7 +8,7 @@ public class SpawnObjectOnCollision : MonoBehaviour
     [SerializeField]private BaseGrowable growable;
     [SerializeField]private GameObject objectToSpawn;
     [SerializeField]private int maxSpawnCount;
-    [SerializeField]private Vector3 spawnOffset;
+    [SerializeField]private Transform ballSpawn;
 
     private List<GameObject> spawnedObjects = new();
     private BoxCollider boxCollider;
@@ -34,7 +34,7 @@ public class SpawnObjectOnCollision : MonoBehaviour
             Destroy(spawnedObjects[0]);
             spawnedObjects.RemoveAt(0);
         }
-        Vector3 spawnPosition = transform.position + spawnOffset;
+        Vector3 spawnPosition = ballSpawn.position;
         
         GameObject obj = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
         spawnedObjects.Add(obj);

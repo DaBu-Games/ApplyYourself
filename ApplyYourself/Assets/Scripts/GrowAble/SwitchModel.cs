@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwitchModel : MonoBehaviour
 {
@@ -7,7 +8,9 @@ public class SwitchModel : MonoBehaviour
     [SerializeField]private GameObject unGrownObject;
     [SerializeField]private GameObject grownObject;
 
-    private void Start()
+    [SerializeField] private UnityEvent GrowCheer;
+
+    private void Awake()
     {
         UpdateModel();
     }
@@ -22,10 +25,14 @@ public class SwitchModel : MonoBehaviour
         growable.OnGrowthChanged -= UpdateModel;
     }
 
-    private void UpdateModel()
+    public virtual void UpdateModel()
     {
         if (growable.HasGrown)
         {
+            if (GrowCheer != null)
+            {
+                GrowCheer.Invoke();
+            }
             grownObject.SetActive(true);
             unGrownObject.SetActive(false);
         }
