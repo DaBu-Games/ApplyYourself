@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 258657016950670034}
   - component: {fileID: 5820553130365210020}
   - component: {fileID: 8606288084910798343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Onderkant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 530
+  m_VersionIndex: 548
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: f048aa8c91b74ae4bbe5cf381cfd2e5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 1691221142249687868}
   - component: {fileID: 5576143020153927243}
   - component: {fileID: 3009900393024904154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PosterKant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 4838464068885826384}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.14, z: -0.606}
+  m_LocalPosition: {x: -0, y: 3.14, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 331
+  m_VersionIndex: 349
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -658,7 +658,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 8d3cd3dc0209dec4fa8800767a5263e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -721,7 +721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824299811487668324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlockWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
