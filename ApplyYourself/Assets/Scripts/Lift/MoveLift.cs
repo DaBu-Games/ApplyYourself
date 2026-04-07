@@ -1,29 +1,60 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveLift : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private ScrollRect creditsScrollRect;
     [SerializeField] private float totalTime;
     
     private Rigidbody rb;
+    private UIFadeInOut uiFadeInOut;
+    
     private bool startMoving = false;
     private bool isFinished = false;
     private float distance;
     private float moveSpeed;
-    private float startTime;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        distance = Vector3.Distance(transform.position, target.position);
-        moveSpeed = distance / totalTime;
-    }
 
+        distance = Vector3.Distance(transform.position, target.position); 
+        moveSpeed = distance / totalTime;
+        
+        creditsScrollRect.gameObject.SetActive(false);
+        uiFadeInOut = creditsScrollRect.gameObject.GetComponent<UIFadeInOut>();
+    }
+    
     public void StartMoving()
     {
+        StartCoroutine(StartSequence());
+    }
+    
+    private IEnumerator StartSequence()
+    {
+        creditsScrollRect.gameObject.SetActive(true);
+        
+        yield return null;
+        
+        yield return StartCoroutine(uiFadeInOut.FadeIn());
+        
+        yield return null;
+        
         startMoving = true;
-        startTime = Time.time;
+    }
+
+    private IEnumerator StopSequence()
+    {
+        startMoving = false;
+        isFinished = true;
+        
+        yield return StartCoroutine(uiFadeInOut.FadeOut());
+        
+        creditsScrollRect.gameObject.SetActive(false);
     }
     
     public bool IsMoving() => startMoving;
@@ -42,10 +73,14 @@ public class MoveLift : MonoBehaviour
 
         rb.MovePosition(newPosition);
         
-        if (Vector3.Distance(rb.position, target.position) <= 0.01f)
+        float currentDistance = Vector3.Distance(newPosition, target.position);
+        float progress = Mathf.Clamp01(currentDistance / distance);
+
+        creditsScrollRect.verticalNormalizedPosition = progress;
+
+        if (currentDistance <= 0.01f)
         {
-            startMoving = false;
-            isFinished = true;
+            StartCoroutine(StopSequence());
         }
     }
 }
