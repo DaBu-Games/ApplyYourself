@@ -8,10 +8,12 @@ public class StartScreen : MonoBehaviour
     [SerializeField] private GameObject startScreen;
     [SerializeField] private UnityEngine.InputSystem.PlayerInput playerInput;
     [SerializeField] private CinemachineInputAxisController cinemachineController;
+    [SerializeField] private CinemachineCamera startCamera;
 
     private void Start()
     {
        ShowScreen();
+       startCamera.Priority = 2;
     }
 
     public void ShowScreen()
@@ -34,5 +36,6 @@ public class StartScreen : MonoBehaviour
         
         playerInput.enabled = true;
         startScreen.SetActive(false);
+        startCamera.Priority = 0;
     }
 }

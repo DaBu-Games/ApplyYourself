@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sprink_03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9072839099332613109, guid: 28680d2fae68b0d419aae7d3d4d59bfd, type: 3}
+      propertyPath: currentEmotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
