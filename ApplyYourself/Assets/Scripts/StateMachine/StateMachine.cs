@@ -32,7 +32,7 @@ public class StateMachine
             return;
         
         currentState.OnEnterState();
-        //Debug.Log(currentState.ToString());
+        Debug.Log(currentState.ToString());
         currentTransitions = transitions.FindAll(x => x.FromState == currentState || x.FromState == null);
     }
 
