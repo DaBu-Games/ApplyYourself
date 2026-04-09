@@ -40,6 +40,7 @@ public class KoroksManager : MonoBehaviour
 
     public virtual void StartCheeringSequence()
     {
+        Debug.Log(hasCheered);
         if (!hasCheered)
         {
             CreatureCounter.Instance.AddCreature();
