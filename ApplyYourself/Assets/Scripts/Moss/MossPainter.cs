@@ -16,7 +16,7 @@ public class MossPainter : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance)
+        if (Vector3.Distance(transform.position, lastPaintPos) < paintDistance || !groundCheck.IsGrounded)
             return;
 
         if (!Physics.Raycast(
