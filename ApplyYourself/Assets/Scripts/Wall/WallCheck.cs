@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 public class WallCheck : MonoBehaviour
 {
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float radius = 0.3f;
+    [SerializeField] private float range;
     [SerializeField] private bool showGizmo;
     
     private Vector3 wallDirection;
@@ -13,27 +13,25 @@ public class WallCheck : MonoBehaviour
 
     public bool IsTouchingWall()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, radius, wallLayer);
+        RaycastHit hit;
 
-        if (hits.Length > 0)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, range, wallLayer))
         {
-            Collider closest = hits[0];
-
-            Vector3 directionToWall = (closest.ClosestPoint(transform.position) - transform.position).normalized;
-
-            wallDirection = -directionToWall;
-            return true;
+            wallDirection = hit.normal;
         }
-
-        wallDirection = Vector3.zero;
-        return false;
+        else
+            wallDirection = Vector3.zero;
+        
+        return wallDirection != Vector3.zero;
     }
 
     private void OnDrawGizmos()
     {
-        if (!showGizmo) return;
-
+        if(!showGizmo)
+            return;
+        
         Gizmos.color = IsTouchingWall() ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawRay(transform.position, transform.forward * range);
     }
+    
 }

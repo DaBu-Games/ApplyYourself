@@ -1,13 +1,15 @@
-using UnityEditorInternal;
+
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
+using Unity.VisualScripting;
 
 public class CreatureCounter : MonoBehaviour
 {
     public static CreatureCounter Instance { get; private set; }
 
-    [SerializeField] private int creatureCount = 0;
+    public int creatureCount = 0;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
     [SerializeField] private Animator animator;
@@ -46,9 +48,6 @@ public class CreatureCounter : MonoBehaviour
         
         animator.SetTrigger("CreatureUp");
     }
-
-
-    
 
 
 }
